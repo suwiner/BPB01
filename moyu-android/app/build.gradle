@@ -3,11 +3,11 @@ android {
     namespace 'com.moyu.mobile'
     compileSdk 35
     defaultConfig {
-        applicationId 'com.moyu.mobile'
+        applicationId 'com.moyu.browser.mobile'
         minSdk 26
         targetSdk 34
-        versionCode 3
-        versionName '2.1.0'
+        versionCode 4
+        versionName '2.2.0'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17

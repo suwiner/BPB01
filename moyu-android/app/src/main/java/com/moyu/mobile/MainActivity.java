@@ -704,7 +704,7 @@ public final class MainActivity extends Activity {
       .setMessage("此操作将清除本机网站缓存、Cookie、访问历史；不会删除书签。")
       .setNegativeButton("取消",null)
       .setPositiveButton("清除",(dlg,which)->clearSiteData()).show());
-    TextView footer=label("墨鱼浏览器 Android 2.1.0\n黑白极简 · 原生工具箱 · 本地数据 · Android WebView",12,muted(),false);
+    TextView footer=label("墨鱼浏览器 Android 2.2.0\n黑白极简 · 原生工具箱 · 本地数据 · Android WebView",12,muted(),false);
     footer.setGravity(Gravity.CENTER);
     LinearLayout.LayoutParams fl=new LinearLayout.LayoutParams(-1,d(78));fl.topMargin=d(18);
     list.addView(footer,fl);

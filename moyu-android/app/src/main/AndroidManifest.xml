@@ -5,16 +5,16 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application android:allowBackup="false" android:usesCleartextTraffic="true"
-        android:label="墨鱼浏览器" android:icon="@drawable/launcher_icon"
+        android:label="墨鱼浏览器·独立版" android:icon="@drawable/launcher_icon"
         android:theme="@style/AppTheme" android:supportsRtl="true">
-        <activity android:name=".MainActivity" android:exported="true"
+        <activity android:name="com.moyu.mobile.MainActivity" android:exported="true"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustResize">
             <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
             <intent-filter android:autoVerify="false"><action android:name="android.intent.action.VIEW" /><category android:name="android.intent.category.DEFAULT" /><category android:name="android.intent.category.BROWSABLE" /><data android:scheme="http" /><data android:scheme="https" /></intent-filter>
         </activity>
-        <activity android:name=".ToolsActivity" android:exported="false" />
-        <receiver android:name=".MoyuReminderReceiver" android:exported="false">
+        <activity android:name="com.moyu.mobile.ToolsActivity" android:exported="false" />
+        <receiver android:name="com.moyu.mobile.MoyuReminderReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
