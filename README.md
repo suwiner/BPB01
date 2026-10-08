@@ -1,28 +1,31 @@
-# Moyu Browser V6.1 official website
+# 墨鱼浏览器官网 V7 · 有序设计版
 
-A dependency-free static website with a kinetic six-scene SVG homepage and a matching Windows download center.
+本文件夹是一套无需打包工具的静态网站程序，可用于 GitHub Pages、Nginx、Cloudflare Pages 等静态空间。
 
-## Local preview
+## 内容
 
-Run `python -m http.server 8080` from this directory, then open `http://localhost:8080`.
+- `index.html`：六个精简章节，真实软件界面展示、AI 选择演示、实用工具演示、工作空间标签页与主题预览
+- `download.html`：Windows 8.32.0 下载中心、安装与便携版状态检查、校验清单与常见问题
+- `styles.css`：统一视觉规范、响应式布局、SVG 矢量动画、减少动态效果模式
+- `app.js`：站点交互、滚动进度、移动菜单、动画可访问性、GitHub 正式发布附件校验
+- `assets/`：矢量墨鱼标记与实际墨鱼浏览器 8.32.0 软件界面
+- `downloads/SHA256SUMS.txt`：安装文件核对摘要
+- `.nojekyll`：GitHub Pages 静态部署支持
 
-## Publish
+## 修改重点
 
-Use `gh-pages` branch root as GitHub Pages source. Files to publish: `index.html`, `download.html`, `styles.css`, `app.js`, `assets/`, `downloads/`, `.nojekyll`, `robots.txt`.
+- 删除重复大号文字、随机飞舞图块、冗余装饰及多余的截图窗口标题栏
+- 使用统一的 1220px 栅格、克制的中文字体粗细和字距
+- 六个章节：净白、深蓝、冷蓝、钴蓝、暖白、深色下载引导
+- 动效仅作用于 SVG 轨迹、页面内容入场和小幅产品视差，交互控件保持稳定
+- 不依赖外部字体或前端框架，核心页面可离线阅读（下载状态检测需要网络）
 
-## Download security
+## 公开下载的限制
 
-The published releases API is checked before enabling a download action. Release tag must be `moyu-browser-v8.32.0`, `v8.32.0`, or `8.32.0`. Filename and byte size must match the canonical build. If GitHub includes an asset SHA-256 digest it must also match. If no digest is provided, the site cannot cryptographically verify bytes before download; users should compare the published `downloads/SHA256SUMS.txt` digest after downloading. The buttons remain disabled when there is no matching official release asset.
+官网通过 GitHub REST `releases` 查询 **公开、非预发行** 的 `moyu-browser-v8.32.0` 等候选标签，逐一对比附件名称与确切字节大小，并在附件提供 digest 时验证 SHA256。附件未正式发布或验证不符时，按钮会禁用。此校验不表示网页能够在点击前对远端文件进行完整字节级验证；用户仍需在下载后自行比对 SHA256。
 
-## Motion and accessibility
+## 部署
 
-Vector artwork uses inline SVG paths, not blurry bitmap backgrounds. Animations honor `prefers-reduced-motion`. Navigation, tabs, theme demos and disclosures are keyboard accessible. Mobile layout is responsive.
+把这个文件夹里的**文件内容**放在 GitHub Pages `gh-pages` 分支的根目录。入口是 `index.html`；`download.html` 为独立下载页。不要将 ZIP 本身直接作为静态首页上传。
 
-## Licensing
-
-This project is a demonstration/presentation website for the Moyu Browser 8.32.0 software. Hosting large EXE/ZIP files requires an official release/file server separate from GitHub Pages.
-
-
-## V6.2 editorial polish (2026-10-08)
-
-Smaller, lighter Chinese headings with improved glyph tracking and vertical rhythm across all six scenes and the download page. Reduced decorative background lettering and streamers. Preserves SVG motion, interaction and safe release-asset checks.
+测试范围：320、360、390、768、1024、1280、1440 px。已验证 DOM 不横向溢出、图片加载以及主要交互与下载状态模拟。真实 Windows 应用程序不包含在这个网站源码 ZIP 内。
