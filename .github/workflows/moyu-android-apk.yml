@@ -33,7 +33,12 @@ jobs:
       - name: Build Android APK
         run: gradle -p moyu-android :app:assembleDebug --no-daemon --stacktrace
       - name: Static Android lint
-        run: gradle -p moyu-android :app:lintDebug --no-daemon
+        run: |
+          gradle -p moyu-android :app:lintDebug --no-daemon || {
+            cat moyu-android/app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt || true
+            exit 1
+          }
+          cat moyu-android/app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt || true
       - name: Verify package and publish hash
         run: |
           set -euxo pipefail

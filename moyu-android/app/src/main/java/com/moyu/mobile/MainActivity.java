@@ -128,7 +128,7 @@ public final class MainActivity extends Activity {
   }
   private TextView label(String value,int size,int color,boolean medium) {
     TextView v=new TextView(this);v.setText(value);v.setTextSize(size);v.setTextColor(color);
-    v.setGravity(Gravity.CENTER_VERTICAL);if(medium)v.setTypeface(android.graphics.Typeface.create("sans-serif-medium",0));
+    v.setGravity(Gravity.CENTER_VERTICAL);if(medium)v.setTypeface(android.graphics.Typeface.create("sans-serif-medium",android.graphics.Typeface.NORMAL));
     return v;
   }
   private void message(String txt) { Toast.makeText(this,txt,Toast.LENGTH_SHORT).show(); }
