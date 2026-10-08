@@ -163,7 +163,7 @@ public final class MainActivity extends Activity {
     settings.setAllowFileAccess(false);
     settings.setAllowContentAccess(true);
     settings.setJavaScriptCanOpenWindowsAutomatically(false);
-    settings.setSupportMultipleWindows(false);
+    settings.setSupportMultipleWindows(true);
     settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
     settings.setMediaPlaybackRequiresUserGesture(true);
     if(Build.VERSION.SDK_INT>=26) settings.setSafeBrowsingEnabled(true);
@@ -213,6 +213,22 @@ public final class MainActivity extends Activity {
       }
     });
     web.setWebChromeClient(new WebChromeClient(){
+      @Override public boolean onCreateWindow(WebView parent, boolean dialog, boolean userGesture, android.os.Message resultMsg) {
+        if(!userGesture||tabs.size()>=MAX_TABS)return false;
+        Tab child=createTab();
+        index=tabs.size()-1;
+        render();
+        WebView.WebViewTransport transport=(WebView.WebViewTransport)resultMsg.obj;
+        transport.setWebView(child.web);
+        resultMsg.sendToTarget();
+        saveSession();
+        return true;
+      }
+      @Override public void onCloseWindow(WebView closing) {
+        for(int i=0;i<tabs.size();i++){
+          if(tabs.get(i).web==closing){closeTab(i);return;}
+        }
+      }
       @Override public void onReceivedTitle(WebView v,String title){
         if(title!=null&&!title.trim().isEmpty())tab.title=title;
       }
@@ -321,6 +337,7 @@ public final class MainActivity extends Activity {
     if(tabs.isEmpty())return;
     Tab t=active();detach(t.web);
     dark="dark".equals(pref.getString("theme","mono"));
+    t.web.setBackgroundColor(card());
     if(t.home)addressBar=null;
     bars();
     LinearLayout root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(bg());
@@ -328,7 +345,7 @@ public final class MainActivity extends Activity {
     head.setPadding(d(18),d(7),d(14),d(7));
     if(t.home) {
       android.widget.ImageView logo=new android.widget.ImageView(this);
-      logo.setImageResource(R.drawable.brand_logo);
+      logo.setImageResource(dark?R.drawable.brand_logo_dark:R.drawable.brand_logo);
       logo.setScaleType(android.widget.ImageView.ScaleType.FIT_CENTER);
       logo.setAdjustViewBounds(true);
       logo.setContentDescription("墨鱼浏览器 LOGO");
@@ -666,7 +683,7 @@ public final class MainActivity extends Activity {
           dg.dismiss();showSettings();
         }).setNegativeButton("取消",null).show();
     });
-    panelRow(list,"privacy","基础追踪域名拦截",pref.getBoolean("tracker_block",true)?"已启用":"已关闭",()->{
+    panelRow(list,"privacy","基础追踪域名拦截",pref.getBoolean("tracker_block",true)?"已启用 · 常见追踪域名":"已关闭",()->{
       pref.edit().putBoolean("tracker_block",!pref.getBoolean("tracker_block",true)).apply();
       showSettings();
     });
@@ -687,7 +704,7 @@ public final class MainActivity extends Activity {
       .setMessage("此操作将清除本机网站缓存、Cookie、访问历史；不会删除书签。")
       .setNegativeButton("取消",null)
       .setPositiveButton("清除",(dlg,which)->clearSiteData()).show());
-    TextView footer=label("墨鱼浏览器 Android 2.0.0\n独立原生工具箱 · 本地隐私存储 · Android WebView",12,muted(),false);
+    TextView footer=label("墨鱼浏览器 Android 2.1.0\n黑白极简 · 原生工具箱 · 本地数据 · Android WebView",12,muted(),false);
     footer.setGravity(Gravity.CENTER);
     LinearLayout.LayoutParams fl=new LinearLayout.LayoutParams(-1,d(78));fl.topMargin=d(18);
     list.addView(footer,fl);
@@ -819,7 +836,7 @@ public final class MainActivity extends Activity {
         }
       }else{
         java.util.regex.Matcher links=java.util.regex.Pattern.compile(
-          "<a\\\\b[^>]*?href\\\\s*=\\\\s*[\\\"']([^\\\"']+)[\\\"'][^>]*>(.*?)</a>",
+          "<a\\b[^>]*?href\\s*=\\s*[\"']([^\"']+)[\"'][^>]*>(.*?)</a>",
           java.util.regex.Pattern.CASE_INSENSITIVE|java.util.regex.Pattern.DOTALL).matcher(raw);
         while(links.find()&&imported.length()<1000){
           String url=links.group(1).replace("&amp;","&");

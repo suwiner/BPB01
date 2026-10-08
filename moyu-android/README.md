@@ -1,4 +1,4 @@
-# 墨鱼浏览器 · Android V2.0
+# 墨鱼浏览器 · Android V2.1.0
 
 基于 Android 原生 Activity + 系统 WebView 构建。以墨鱼浏览器 PC 8.35 品牌元素为参考设计，遵循手机小屏交互习惯。
 
@@ -12,6 +12,15 @@
 - 本版仍未集成桌面 CRX 扩展、完整广告拦截、PC 账号云同步与原生新闻抓取。
 
 构建：在 Android SDK 35 + Java 17 + Gradle 8.9 下执行 `gradle -p moyu-android :app:assembleDebug`。
-GitHub Actions 工作流位于 `.github/workflows/moyu-android-apk.yml`，构建产物位于 `moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk`。
+GitHub Actions 工作流位于 `.github/workflows/moyu-android-apk.yml`，构建产物位于 `moyu-android/release/MoyuBrowser_Mobile_2.1.0.apk`。
 
 注意：此 APK 为 GitHub Actions 调试签名构建。不同构建机的调试证书可能变化，无法直接覆盖旧签名 APK；卸载旧版将清除旧版本机数据。正式升级分发需创建并安全保存稳定的发布证书，不应将证书私钥提交到公开 Git 仓库。
+
+## V2.1 重点修订
+- 原版 PC 8.35 soft-logo.png 轮廓转为 Android 512×512 等比例矢量图，深色模式使用单独适配图标。
+- 工具箱改为统一抗锯齿线框图标；新增网页主动弹窗的用户手势新标签处理。
+- 修正 Netscape HTML 收藏夹文件解析；支持 JSON+HTML 导入和去重。
+- 新增静态 Lint、APK 结构、包名/版本及签名校验；发布 GitHub 预发布版供直接安装。
+- 未实现原生 Chromium 扩展、跨设备同步及完整视频去广告，相关功能不能用纯 WebView 等同替代。
+
+**安装提示**：本版为云端 debug 签名包。签名可能与此前测试 APK 不一致，若提示无法覆盖安装，请先导出书签及重要数据，再卸载旧测试版后安装。待办与笔记暂无完整备份/迁移能力，卸载之前请手工保存。正式持续升级应采用保存在 GitHub Secrets 的固定发布签名密钥。

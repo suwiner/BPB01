@@ -104,9 +104,11 @@ public final class ToolsActivity extends Activity {
     private void item(String symbol,String title,String subtitle,Runnable action){
         LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(dp(14),dp(10),dp(12),dp(10));
         row.setBackground(rounded(card(),17));
-        TextView icon=t(symbol,20,true,textColor());icon.setGravity(Gravity.CENTER);
-        icon.setBackground(rounded(bg(),12));
-        row.addView(icon,new LinearLayout.LayoutParams(dp(44),dp(44)));
+        android.widget.FrameLayout symbolFrame=new android.widget.FrameLayout(this);
+        symbolFrame.setBackground(rounded(bg(),12));
+        android.widget.FrameLayout.LayoutParams iconParams=new android.widget.FrameLayout.LayoutParams(dp(23),dp(23),Gravity.CENTER);
+        symbolFrame.addView(new MoyuIcon(this,symbol,textColor()),iconParams);
+        row.addView(symbolFrame,new LinearLayout.LayoutParams(dp(44),dp(44)));
         LinearLayout words=vertical();
         TextView first=t(title,15,true,textColor());words.addView(first,new LinearLayout.LayoutParams(-1,dp(25)));
         if(subtitle!=null&&!subtitle.isEmpty()){

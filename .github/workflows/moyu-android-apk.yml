@@ -1,7 +1,7 @@
-name: Moyu Android APK V2
+name: Moyu Android APK V2.1
 on:
   push:
-    branches: [moyu-android-mobile-v2]
+    branches: [moyu-android-mobile-v2-1]
     paths:
       - 'moyu-android/**'
       - '.github/workflows/moyu-android-apk.yml'
@@ -32,26 +32,43 @@ jobs:
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" 'platforms;android-35' 'build-tools;35.0.0'
       - name: Build Android APK
         run: gradle -p moyu-android :app:assembleDebug --no-daemon --stacktrace
+      - name: Static Android lint
+        run: gradle -p moyu-android :app:lintDebug --no-daemon
       - name: Verify package and publish hash
         run: |
           set -euxo pipefail
           mkdir -p moyu-android/release
-          cp moyu-android/app/build/outputs/apk/debug/app-debug.apk moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk
+          cp moyu-android/app/build/outputs/apk/debug/app-debug.apk moyu-android/release/MoyuBrowser_Mobile_2.1.0.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs moyu-android/release/MoyuBrowser_Mobile_2.1.0.apk
+          unzip -t -q moyu-android/release/MoyuBrowser_Mobile_2.1.0.apk
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging moyu-android/release/MoyuBrowser_Mobile_2.1.0.apk | grep -F "versionCode='3' versionName='2.1.0'"
           cd moyu-android/release
-          sha256sum MoyuBrowser_Mobile_2.0.0.apk > SHA256SUMS.txt
+          sha256sum MoyuBrowser_Mobile_2.1.0.apk > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: MoyuBrowser_Mobile_V2_Android_APK
+          name: MoyuBrowser_Mobile_V2_1_Android_APK
           path: |
-            moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk
+            moyu-android/release/MoyuBrowser_Mobile_2.1.0.apk
             moyu-android/release/SHA256SUMS.txt
           retention-days: 30
+      - name: Publish public GitHub pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG=moyu-mobile-v2.1.0
+          APK=moyu-android/release/MoyuBrowser_Mobile_2.1.0.apk
+          HASH=moyu-android/release/SHA256SUMS.txt
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$APK" "$HASH" --clobber
+          else
+            gh release create "$TAG" "$APK" "$HASH" --prerelease --target "$GITHUB_SHA" --title "墨鱼浏览器 Android V2.1.0" --notes "全新黑白默认主题、精确等比例品牌标志、浏览器增强、工具箱与工作提醒。此为调试签名预览版，旧版可能因签名不同而需要卸载；卸载会删除本地数据。"
+          fi
       - name: Publish APK to branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk moyu-android/release/SHA256SUMS.txt
+          git add -f moyu-android/release/MoyuBrowser_Mobile_2.1.0.apk moyu-android/release/SHA256SUMS.txt
           if ! git diff --cached --quiet; then
             git commit -m 'build(android): publish installable mobile APK [skip ci]'
             git push
