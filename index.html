@@ -1,88 +1,117 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f8f9f6"><meta name="description" content="墨鱼浏览器 8.32.0 官方网站。简洁有序地管理 AI 网址导航、常用工具、书签、标签与个性化首页。">
-<title>墨鱼浏览器 · 让浏览，更有章法</title>
-<link rel="icon" href="assets/moyu-mark.svg" type="image/svg+xml"><link rel="preload" as="image" href="assets/browser-real-8.32.webp">
-<link rel="stylesheet" href="styles.css?v=7.0.0"><script src="app.js?v=7.0.0" defer></script>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#f8f9f6" name="theme-color"/><meta content="墨鱼浏览器 Windows 8.32.0 与 Android 7.0 官网。探索 AI 导航、实用工具、标签与工作空间。全新 SVG 矢量插画与轻量粒子动效。" name="description"/>
+<title>墨鱼浏览器 · 更从容的 Windows 与 Android 浏览体验</title>
+<link href="assets/moyu-mark.svg" rel="icon" type="image/svg+xml"/><link as="image" href="assets/browser-real-8.32.webp" rel="preload"/>
+<link href="styles.css?v=8.0.0" rel="stylesheet"/><script defer="" src="app.js?v=8.0.0"></script>
 </head>
 <body data-page="home">
 <a class="skip-link" href="#main">跳转到主要内容</a>
-<svg class="icons" aria-hidden="true" focusable="false"><defs>
-<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-<symbol id="i-external" viewBox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11" stroke="currentColor" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.7" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
-<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke="currentColor" fill="none" stroke-width="1.5"/></symbol>
-<symbol id="i-book" viewBox="0 0 24 24"><path d="M5 3.5h13a2 2 0 0 1 2 2V21l-8-5-8 5V5.5a2 2 0 0 1 2-2Z" stroke="currentColor" fill="none" stroke-width="1.6" stroke-linejoin="round"/></symbol>
-<symbol id="i-wand" viewBox="0 0 24 24"><path d="m4 20 12-12 4 4L8 24M13 3l.7 2.4L16 6l-2.3.6L13 9l-.7-2.4L10 6l2.3-.6L13 3Zm7 0 .5 1.5L22 5l-1.5.5L20 7l-.5-1.5L18 5l1.5-.5L20 3Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<svg aria-hidden="true" class="icons" focusable="false"><defs>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></symbol>
+<symbol id="i-down" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></symbol>
+<symbol id="i-external" viewbox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></symbol>
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.8" cy="10.8" fill="none" r="6.7" stroke="currentColor" stroke-width="1.6"></circle><path d="m16 16 5 5" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path></symbol>
+<symbol id="i-grid" viewbox="0 0 24 24"><rect fill="none" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5" width="8" x="3" y="3"></rect><rect fill="none" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5" width="8" x="13" y="3"></rect><rect fill="none" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5" width="8" x="3" y="13"></rect><rect fill="none" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5" width="8" x="13" y="13"></rect></symbol>
+<symbol id="i-book" viewbox="0 0 24 24"><path d="M5 3.5h13a2 2 0 0 1 2 2V21l-8-5-8 5V5.5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.6"></path></symbol>
+<symbol id="i-wand" viewbox="0 0 24 24"><path d="m4 20 12-12 4 4L8 24M13 3l.7 2.4L16 6l-2.3.6L13 9l-.7-2.4L10 6l2.3-.6L13 3Zm7 0 .5 1.5L22 5l-1.5.5L20 7l-.5-1.5L18 5l1.5-.5L20 3Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></symbol>
 </defs></svg>
-<div class="top-progress" aria-hidden="true"><span id="page-progress"></span></div>
+<div aria-hidden="true" class="top-progress"><span id="page-progress"></span></div>
 <header class="site-header" id="top">
-  <div class="header-inner">
-    <a class="brand" href="./" aria-label="墨鱼浏览器官网首页"><img src="assets/moyu-mark.svg" width="34" height="34" alt=""><span class="brand-name">墨鱼浏览器</span><span class="brand-separator"></span><span class="brand-en">MOYU</span></a>
-    <nav class="desktop-nav" aria-label="主导航"><a href="#intro" data-nav="intro" class="active">首页</a><a href="#ai" data-nav="ai">AI 导航</a><a href="#tools" data-nav="tools">实用工具</a><a href="#workspace" data-nav="workspace">工作空间</a><a href="#personalize" data-nav="personalize">个性化</a></nav>
-    <a class="nav-download" href="download.html">立即下载 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="打开导航菜单" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span></button>
-  </div>
-  <nav class="mobile-menu" id="mobile-menu" aria-label="移动端导航" hidden><a href="#intro">首页</a><a href="#ai">AI 导航</a><a href="#tools">实用工具</a><a href="#workspace">工作空间</a><a href="#personalize">个性化</a><a href="download.html">下载中心</a></nav>
+<div class="header-inner">
+<a aria-label="墨鱼浏览器官网首页" class="brand" href="./"><img alt="" height="34" src="assets/moyu-mark.svg" width="34"/><span class="brand-name">墨鱼浏览器</span><span class="brand-separator"></span><span class="brand-en">MOYU</span></a>
+<nav aria-label="主导航" class="desktop-nav"><a class="active" data-nav="intro" href="#intro">首页</a><a data-nav="ai" href="#ai">AI 导航</a><a data-nav="tools" href="#tools">实用工具</a><a data-nav="workspace" href="#workspace">工作空间</a><a href="#android">Android 手机版</a></nav>
+<a class="nav-download" href="download.html">立即下载 <svg aria-hidden="true"><use href="#i-arrow"></use></svg></a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="打开导航菜单" class="menu-toggle" id="menu-toggle" type="button"><span></span><span></span></button>
+</div>
+<nav aria-label="移动端导航" class="mobile-menu" hidden="" id="mobile-menu"><a href="#intro">首页</a><a href="#ai">AI 导航</a><a href="#tools">实用工具</a><a href="#workspace">工作空间</a><a href="#personalize">个性化</a><a href="download.html">下载中心</a><a href="#android">Android 手机版</a></nav>
 </header>
 <main id="main">
 <!-- 01 / A calm product-first introduction -->
-<section class="chapter chapter-hero" id="intro" data-chapter="01" aria-labelledby="intro-title">
-  <div class="container chapter-grid hero-grid">
-    <div class="chapter-copy hero-copy">
-      <p class="kicker" data-reveal><span class="kicker-dot"></span> MOYU BROWSER <span class="kicker-slash">/</span> WINDOWS 8.32.0</p>
-      <h1 class="headline" id="intro-title" data-reveal>让浏览，<br><span class="emphasis">更有章法。</span></h1>
-      <p class="copy-lead" data-reveal>让 AI、收藏和实用工具各归其位。<br>简洁的界面，让每一次打开都更从容。</p>
-      <div class="actions" data-reveal><a href="download.html" class="button button-dark"><span>下载 Windows 版</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="link-text" href="#ai">了解产品 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-      <div class="hero-meta" data-reveal><span>Windows 10 / 11</span><span>64 位</span><span>版本 8.32.0</span></div>
-    </div>
-    <div class="hero-visual" data-reveal aria-label="墨鱼浏览器真实软件界面展示">
-      <svg class="hero-orbits" viewBox="0 0 700 650" aria-hidden="true"><circle class="orbit orbit-one" cx="380" cy="325" r="274"/><circle class="orbit orbit-two" cx="380" cy="325" r="228"/><path class="orbit-sweep" d="M128 260C242-49 620 24 654 285"/><circle class="orbit-dot" cx="654" cy="285" r="5"/></svg>
-      <div class="product-window" id="product-window"><img src="assets/browser-real-8.32.webp" width="1440" height="1120" alt="墨鱼浏览器 8.32.0 新标签页真实截图"></div>
-      <span class="preview-footnote">REAL INTERFACE <span class="preview-dot"></span> V8.32</span>
-    </div>
-  </div>
-  <a class="scroll-next" href="#ai" aria-label="向下浏览 AI 导航">继续探索 <svg aria-hidden="true"><use href="#i-down"/></svg></a>
+<section aria-labelledby="intro-title" class="chapter chapter-hero" data-chapter="01" id="intro">
+<div class="container chapter-grid hero-grid">
+<div class="chapter-copy hero-copy">
+<p class="kicker" data-reveal=""><span class="kicker-dot"></span> MOYU BROWSER <span class="kicker-slash">/</span> WINDOWS 8.32.0</p>
+<h1 class="headline" data-reveal="" id="intro-title">让浏览更轻盈，<br/><span class="emphasis">让灵感更自由。</span></h1>
+<p class="copy-lead" data-reveal="">让 AI、收藏和实用工具各归其位。<br/>简洁的界面，让每一次打开都更从容。</p>
+<div class="actions" data-reveal=""><a class="button button-dark" href="download.html"><span>下载 Windows 版</span><svg aria-hidden="true"><use href="#i-arrow"></use></svg></a><a class="link-text" href="#ai">了解产品 <svg aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
+<div class="hero-meta" data-reveal=""><span>Windows 10 / 11</span><span>64 位</span><span>版本 8.32.0</span></div>
+</div>
+<div aria-label="墨鱼浏览器真实软件界面展示" class="hero-visual" data-reveal=""><canvas aria-hidden="true" class="motion-particles" data-particles="hero"></canvas><span aria-hidden="true" class="art-badge badge-one">AI <b>36</b></span><span aria-hidden="true" class="art-badge badge-two"><b>17</b> 工具</span>
+<svg aria-hidden="true" class="hero-orbits" viewbox="0 0 700 650"><circle class="orbit orbit-one" cx="380" cy="325" r="274"></circle><circle class="orbit orbit-two" cx="380" cy="325" r="228"></circle><path class="orbit-sweep" d="M128 260C242-49 620 24 654 285"></path><circle class="orbit-dot" cx="654" cy="285" r="5"></circle></svg>
+<div class="product-window" id="product-window"><div class="window-toolbar"><span class="traffic"><i></i><i></i><i></i></span><div class="window-url"><svg aria-hidden="true"><use href="#i-search"></use></svg><span>新标签页 · 墨鱼浏览器</span></div><span class="window-kebab">···</span></div><img alt="墨鱼浏览器 8.32.0 新标签页真实截图" height="1120" src="assets/browser-real-8.32.webp" width="1440"/></div>
+<span class="preview-footnote">REAL INTERFACE <span class="preview-dot"></span> V8.32</span>
+</div>
+</div>
+<a aria-label="向下浏览 AI 导航" class="scroll-next" href="#ai">继续探索 <svg aria-hidden="true"><use href="#i-down"></use></svg></a>
 </section>
 <!-- 02 / AI -->
-<section class="chapter chapter-ai" id="ai" data-chapter="02" aria-labelledby="ai-title">
-  <div class="container chapter-grid ai-grid">
-    <div class="chapter-copy"><p class="kicker" data-reveal>01 <span class="kicker-slash">/</span> AI DISCOVERY</p><h2 class="headline" id="ai-title" data-reveal>灵感有方向，<br><span class="emphasis">探索更自由。</span></h2><p class="copy-lead" data-reveal>把常用 AI 平台集中在一起。<br>少一些跳转，多一些思考的时间。</p><div class="section-divider" data-reveal></div><p class="copy-mini" data-reveal>按用途整理 · 随手直达 · 自由选择</p></div>
-    <div class="ai-showcase" data-reveal>
-      <svg class="ai-backdrop" viewBox="0 0 640 480" aria-hidden="true"><circle class="ai-halo-ring" cx="320" cy="238" r="183"/><circle class="ai-halo-ring inner" cx="320" cy="238" r="138"/><path class="ai-signal" d="M35 354C175 172 420 486 614 124"/><path class="ai-signal secondary" d="M15 378C190 205 426 448 628 151"/></svg>
-      <div class="ai-panel"><div class="panel-topline"><span><i class="status-dot"></i> AI DISCOVERY</span><span>04 / PLATFORMS</span></div>
-        <div class="ai-tabs" role="group" aria-label="选择 AI 平台"><button class="ai-tab is-selected" type="button" data-ai="0" aria-pressed="true">ChatGPT</button><button class="ai-tab" type="button" data-ai="1" aria-pressed="false">Gemini</button><button class="ai-tab" type="button" data-ai="2" aria-pressed="false">Claude</button><button class="ai-tab" type="button" data-ai="3" aria-pressed="false">DeepSeek</button></div>
-        <div class="ai-content" aria-live="polite"><span class="panel-eyebrow">当前选择 / AI PLATFORM</span><h3 id="ai-model">ChatGPT</h3><p id="ai-description">对话、写作与代码辅助，让思路从这里开始。</p><div class="ai-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-        <div class="panel-footerline"><span>按用途查找工具</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></div>
-      </div>
-    </div>
-  </div>
+<section aria-labelledby="ai-title" class="chapter chapter-ai" data-chapter="02" id="ai">
+<div class="container chapter-grid ai-grid">
+<div class="chapter-copy"><p class="kicker" data-reveal="">01 <span class="kicker-slash">/</span> AI DISCOVERY</p><h2 class="headline" data-reveal="" id="ai-title">灵感有方向，<br/><span class="emphasis">探索更自由。</span></h2><p class="copy-lead" data-reveal="">把常用 AI 平台集中在一起。<br/>少一些跳转，多一些思考的时间。</p><div class="section-divider" data-reveal=""></div><p class="copy-mini" data-reveal="">按用途整理 · 随手直达 · 自由选择</p></div>
+<div class="ai-showcase" data-reveal=""><img alt="" aria-hidden="true" class="scene-illustration ai-illustration" loading="lazy" src="assets/ai-constellation.svg"/><canvas aria-hidden="true" class="motion-particles" data-particles="ai"></canvas>
+<svg aria-hidden="true" class="ai-backdrop" viewbox="0 0 640 480"><circle class="ai-halo-ring" cx="320" cy="238" r="183"></circle><circle class="ai-halo-ring inner" cx="320" cy="238" r="138"></circle><path class="ai-signal" d="M35 354C175 172 420 486 614 124"></path><path class="ai-signal secondary" d="M15 378C190 205 426 448 628 151"></path></svg>
+<div class="ai-panel"><div class="panel-topline"><span><i class="status-dot"></i> AI DISCOVERY</span><span>04 / PLATFORMS</span></div>
+<div aria-label="选择 AI 平台" class="ai-tabs" role="group"><button aria-pressed="true" class="ai-tab is-selected" data-ai="0" type="button">ChatGPT</button><button aria-pressed="false" class="ai-tab" data-ai="1" type="button">Gemini</button><button aria-pressed="false" class="ai-tab" data-ai="2" type="button">Claude</button><button aria-pressed="false" class="ai-tab" data-ai="3" type="button">DeepSeek</button></div>
+<div aria-live="polite" class="ai-content"><span class="panel-eyebrow">当前选择 / AI PLATFORM</span><h3 id="ai-model">ChatGPT</h3><p id="ai-description">对话、写作与代码辅助，让思路从这里开始。</p><div aria-hidden="true" class="ai-equalizer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="panel-footerline"><span>按用途查找工具</span><svg aria-hidden="true"><use href="#i-arrow"></use></svg></div>
+</div>
+</div>
+</div>
 </section>
 <!-- 03 / tools -->
-<section class="chapter chapter-tools" id="tools" data-chapter="03" aria-labelledby="tools-title"><div class="container">
-  <div class="section-top"><div><p class="kicker" data-reveal>02 <span class="kicker-slash">/</span> ESSENTIAL TOOLS</p><h2 class="headline" id="tools-title" data-reveal>小工具，<span class="emphasis">大帮助。</span></h2></div><p class="copy-lead" data-reveal>把常用功能留在手边。<br>要用的时候，刚好就在。</p></div>
-  <div class="tools-layout" data-reveal>
-    <div class="tool-options" role="group" aria-label="体验工具介绍"><button class="tool-choice is-selected" type="button" data-tool="0" aria-pressed="true"><span class="tool-number">01</span><span>图片取色</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="tool-choice" type="button" data-tool="1" aria-pressed="false"><span class="tool-number">02</span><span>长网页截图</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="tool-choice" type="button" data-tool="2" aria-pressed="false"><span class="tool-number">03</span><span>翻译工具</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="tool-choice" type="button" data-tool="3" aria-pressed="false"><span class="tool-number">04</span><span>日报与周报</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
-    <div class="tool-display" data-variant="0" aria-live="polite"><svg class="tool-graphic" viewBox="0 0 400 260" aria-hidden="true"><rect class="tool-grid-back" x="65" y="20" width="270" height="217" rx="12"/><path class="tool-grid-lines" d="M65 75H335M65 129H335M65 183H335M133 20V237M200 20V237M268 20V237"/><circle class="tool-target" cx="200" cy="129" r="56"/><circle class="tool-target-inner" cx="200" cy="129" r="8"/><path class="tool-cross" d="M200 50V208M120 129H280"/></svg><div class="tool-display-info"><span class="panel-eyebrow">SELECTED TOOL <span id="tool-count">01 / 04</span></span><h3 id="tool-name">图片取色</h3><p id="tool-description">快速识别与复制图像中的颜色，为设计提供更顺手的参考。</p></div></div>
-  </div>
+<section aria-labelledby="tools-title" class="chapter chapter-tools" data-chapter="03" id="tools"><div class="container">
+<div class="section-top"><div><p class="kicker" data-reveal="">02 <span class="kicker-slash">/</span> ESSENTIAL TOOLS</p><h2 class="headline" data-reveal="" id="tools-title">小工具，<span class="emphasis">大帮助。</span></h2></div><p class="copy-lead" data-reveal="">把常用功能留在手边。<br/>要用的时候，刚好就在。</p></div>
+<div class="tools-layout" data-reveal="">
+<div aria-label="体验工具介绍" class="tool-options" role="group"><button aria-pressed="true" class="tool-choice is-selected" data-tool="0" type="button"><span class="tool-number">01</span><span>图片取色</span><svg aria-hidden="true"><use href="#i-arrow"></use></svg></button><button aria-pressed="false" class="tool-choice" data-tool="1" type="button"><span class="tool-number">02</span><span>长网页截图</span><svg aria-hidden="true"><use href="#i-arrow"></use></svg></button><button aria-pressed="false" class="tool-choice" data-tool="2" type="button"><span class="tool-number">03</span><span>翻译工具</span><svg aria-hidden="true"><use href="#i-arrow"></use></svg></button><button aria-pressed="false" class="tool-choice" data-tool="3" type="button"><span class="tool-number">04</span><span>日报与周报</span><svg aria-hidden="true"><use href="#i-arrow"></use></svg></button></div>
+<div aria-live="polite" class="tool-display" data-variant="0"><img alt="" aria-hidden="true" class="scene-illustration tools-illustration" loading="lazy" src="assets/geometry-tools.svg"/><canvas aria-hidden="true" class="motion-particles" data-particles="tools"></canvas><svg aria-hidden="true" class="tool-graphic" viewbox="0 0 400 260"><rect class="tool-grid-back" height="217" rx="12" width="270" x="65" y="20"></rect><path class="tool-grid-lines" d="M65 75H335M65 129H335M65 183H335M133 20V237M200 20V237M268 20V237"></path><circle class="tool-target" cx="200" cy="129" r="56"></circle><circle class="tool-target-inner" cx="200" cy="129" r="8"></circle><path class="tool-cross" d="M200 50V208M120 129H280"></path></svg><div class="tool-display-info"><span class="panel-eyebrow">SELECTED TOOL <span id="tool-count">01 / 04</span></span><h3 id="tool-name">图片取色</h3><p id="tool-description">快速识别与复制图像中的颜色，为设计提供更顺手的参考。</p></div></div>
+</div>
 </div></section>
 <!-- 04 / workflow -->
-<section class="chapter chapter-work" id="workspace" data-chapter="04" aria-labelledby="work-title"><div class="container chapter-grid work-grid">
-  <div class="chapter-copy"><p class="kicker" data-reveal>03 <span class="kicker-slash">/</span> WORKSPACE</p><h2 class="headline" id="work-title" data-reveal>信息有序，<br><span class="emphasis">工作更轻松。</span></h2><p class="copy-lead" data-reveal>从收藏、标签到工作记录。<br>一切都有自己的位置。</p><p class="copy-mini" data-reveal>更专注的体验，从清晰的结构开始。</p></div>
-  <div class="work-window" data-reveal><div class="work-toolbar"><span class="work-brand">我的工作空间</span><span class="work-time">MOYU / ORGANIZED</span></div><div class="work-tabs" role="tablist" aria-label="工作空间功能"><button type="button" role="tab" id="work-tab-0" aria-controls="work-panel" aria-selected="true" tabindex="0" class="is-selected" data-work="0">标签与收藏</button><button type="button" role="tab" id="work-tab-1" aria-controls="work-panel" aria-selected="false" tabindex="-1" data-work="1">日报周报</button><button type="button" role="tab" id="work-tab-2" aria-controls="work-panel" aria-selected="false" tabindex="-1" data-work="2">账号管理</button></div>
-    <div id="work-panel" role="tabpanel" aria-labelledby="work-tab-0" class="work-panel"><p class="work-kicker">WORKSPACE / 01</p><h3 id="work-panel-title">需要的资料，一目了然。</h3><p id="work-panel-description">分类管理书签和标签，把每个常用网站都放回合适的位置。</p><div class="work-chips" id="work-panel-chips"><span>工作资料</span><span>灵感收藏</span><span>常用入口</span></div></div>
-    <div class="work-window-bottom"><span>ALL IN ONE PLACE</span><svg aria-hidden="true"><use href="#i-grid"/></svg></div>
-  </div>
+<section aria-labelledby="work-title" class="chapter chapter-work" data-chapter="04" id="workspace"><div class="container chapter-grid work-grid">
+<div class="chapter-copy"><p class="kicker" data-reveal="">03 <span class="kicker-slash">/</span> WORKSPACE</p><h2 class="headline" data-reveal="" id="work-title">信息有序，<br/><span class="emphasis">工作更轻松。</span></h2><p class="copy-lead" data-reveal="">从收藏、标签到工作记录。<br/>一切都有自己的位置。</p><p class="copy-mini" data-reveal="">更专注的体验，从清晰的结构开始。</p></div>
+<div class="work-window" data-reveal=""><canvas aria-hidden="true" class="motion-particles" data-particles="work"></canvas><div class="work-toolbar"><span class="work-brand">我的工作空间</span><span class="work-time">MOYU / ORGANIZED</span></div><div aria-label="工作空间功能" class="work-tabs" role="tablist"><button aria-controls="work-panel" aria-selected="true" class="is-selected" data-work="0" id="work-tab-0" role="tab" tabindex="0" type="button">标签与收藏</button><button aria-controls="work-panel" aria-selected="false" data-work="1" id="work-tab-1" role="tab" tabindex="-1" type="button">日报周报</button><button aria-controls="work-panel" aria-selected="false" data-work="2" id="work-tab-2" role="tab" tabindex="-1" type="button">账号管理</button></div>
+<div aria-labelledby="work-tab-0" class="work-panel" id="work-panel" role="tabpanel"><p class="work-kicker">WORKSPACE / 01</p><h3 id="work-panel-title">需要的资料，一目了然。</h3><p id="work-panel-description">分类管理书签和标签，把每个常用网站都放回合适的位置。</p><div class="work-chips" id="work-panel-chips"><span>工作资料</span><span>灵感收藏</span><span>常用入口</span></div></div>
+<div class="work-window-bottom"><span>ALL IN ONE PLACE</span><svg aria-hidden="true"><use href="#i-grid"></use></svg></div>
+</div>
 </div></section>
 <!-- 05 / personal theme -->
-<section class="chapter chapter-personal" id="personalize" data-chapter="05" aria-labelledby="personal-title"><div class="container chapter-grid personal-grid">
-  <div class="chapter-copy"><p class="kicker" data-reveal>04 <span class="kicker-slash">/</span> PERSONALIZED</p><h2 class="headline" id="personal-title" data-reveal>喜欢的样子，<br><span class="emphasis">自己决定。</span></h2><p class="copy-lead" data-reveal>黑白、清新蓝，或适合夜晚的深色。<br>你的浏览器，应该顺着你的习惯。</p><div class="theme-choices" role="group" aria-label="体验主题颜色" data-reveal><button class="theme-choice is-selected" type="button" data-theme="neutral" aria-pressed="true"><span class="theme-dot neutral"></span>黑白极简</button><button class="theme-choice" type="button" data-theme="blue" aria-pressed="false"><span class="theme-dot blue"></span>清新蓝</button><button class="theme-choice" type="button" data-theme="night" aria-pressed="false"><span class="theme-dot night"></span>深色夜航</button></div><p class="demo-hint" data-reveal>点击上方颜色，实时体验主题效果</p></div>
-  <div class="personal-preview" data-theme-active="neutral" data-reveal><div class="preview-top"><span>MOYU / NEW TAB</span><div><i></i><i></i><i></i></div></div><div class="preview-center"><div class="preview-emblem"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 15 21 23a21 21 0 1 1 0 18L6 49l8-17Z" fill="currentColor"/><circle cx="37" cy="32" r="12" fill="var(--preview-paper)"/><circle cx="60" cy="32" r="3.5" fill="#f36a5f"/></svg></div><h3>每一天，都有新发现。</h3><div class="preview-search"><svg aria-hidden="true"><use href="#i-search"/></svg><span>搜索，或输入网址</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></div><div class="preview-shortcuts"><span>AI 平台</span><span>设计资源</span><span>常用网站</span></div></div></div>
+<section aria-labelledby="personal-title" class="chapter chapter-personal" data-chapter="05" id="personalize"><div class="container chapter-grid personal-grid">
+<div class="chapter-copy"><p class="kicker" data-reveal="">04 <span class="kicker-slash">/</span> PERSONALIZED</p><h2 class="headline" data-reveal="" id="personal-title">喜欢的样子，<br/><span class="emphasis">自己决定。</span></h2><p class="copy-lead" data-reveal="">黑白、清新蓝，或适合夜晚的深色。<br/>你的浏览器，应该顺着你的习惯。</p><div aria-label="体验主题颜色" class="theme-choices" data-reveal="" role="group"><button aria-pressed="true" class="theme-choice is-selected" data-theme="neutral" type="button"><span class="theme-dot neutral"></span>黑白极简</button><button aria-pressed="false" class="theme-choice" data-theme="blue" type="button"><span class="theme-dot blue"></span>清新蓝</button><button aria-pressed="false" class="theme-choice" data-theme="night" type="button"><span class="theme-dot night"></span>深色夜航</button></div><p class="demo-hint" data-reveal="">点击上方颜色，实时体验主题效果</p></div>
+<div class="personal-preview" data-reveal="" data-theme-active="neutral"><canvas aria-hidden="true" class="motion-particles" data-particles="personal"></canvas><div class="preview-top"><span>MOYU / NEW TAB</span><div><i></i><i></i><i></i></div></div><div class="preview-center"><div class="preview-emblem"><svg aria-hidden="true" viewbox="0 0 64 64"><path d="M6 15 21 23a21 21 0 1 1 0 18L6 49l8-17Z" fill="currentColor"></path><circle cx="37" cy="32" fill="var(--preview-paper)" r="12"></circle><circle cx="60" cy="32" fill="#f36a5f" r="3.5"></circle></svg></div><h3>每一天，都有新发现。</h3><div class="preview-search"><svg aria-hidden="true"><use href="#i-search"></use></svg><span>搜索，或输入网址</span><svg aria-hidden="true"><use href="#i-arrow"></use></svg></div><div class="preview-shortcuts"><span>AI 平台</span><span>设计资源</span><span>常用网站</span></div></div></div>
 </div></section>
 <!-- 06 / CTA -->
-<section class="chapter chapter-final" id="release" data-chapter="06" aria-labelledby="release-title"><svg class="final-art" viewBox="0 0 1200 720" aria-hidden="true"><circle cx="888" cy="350" r="282" class="final-ring ring1"/><circle cx="888" cy="350" r="226" class="final-ring ring2"/><path class="final-arc" d="M550 590C800 120 1070 110 1290 372"/></svg><div class="container final-layout"><div class="chapter-copy"><p class="kicker" data-reveal>MOYU BROWSER <span class="kicker-slash">/</span> V8.32.0</p><h2 class="headline" id="release-title" data-reveal>下一页，<br><span class="emphasis">从容开始。</span></h2><p class="copy-lead" data-reveal>墨鱼浏览器，陪你把每天的浏览变简单。</p><div class="actions" data-reveal><a class="button button-lime" href="download.html">前往下载中心 <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div><div class="final-mark" aria-hidden="true"><span class="final-mono">M.</span><p>LESS NOISE. MORE SPACE.</p></div></div><footer class="site-footer container"><span>© 2026 MOYU BROWSER · 独立开发</span><a href="#intro">返回顶部 ↑</a></footer></section>
+
+<section aria-labelledby="android-title" class="chapter chapter-android" data-chapter="06" id="android">
+<div class="container chapter-grid android-grid">
+<div class="chapter-copy android-copy">
+<p class="kicker" data-reveal=""><span class="kicker-dot"></span> 05 <span class="kicker-slash">/</span> MOYU FOR ANDROID</p>
+<h2 class="headline" data-reveal="" id="android-title">熟悉的自在，<br/><span class="emphasis">也在你的掌心。</span></h2>
+<p class="copy-lead" data-reveal="">轻量触控、多标签浏览、书签整理与常用工具。为随时出发的灵感，保留一份从容。</p>
+<div class="android-meta" data-reveal=""><span>Android 9+</span><span>版本 7.0.0</span><span>原生 APK</span></div>
+<div class="actions" data-reveal=""><a class="button button-mint" download="" href="downloads/MoyuBrowser_7.0.0_Android.apk"><span>下载 Android APK</span><svg aria-hidden="true"><use href="#i-down"></use></svg></a><a class="link-text android-more" href="android.html">了解手机版 <svg aria-hidden="true"><use href="#i-arrow"></use></svg></a></div>
+<p class="android-note" data-reveal="">Android 7.0.0 为独立发布版，版本号不同于 Windows 8.32.0。请以下载页的兼容说明为准。</p>
+</div>
+<div aria-label="墨鱼浏览器 Android 手机版设计示意" class="android-stage" data-reveal="">
+<img alt="" aria-hidden="true" class="android-ribbon" loading="lazy" src="assets/android-ribbon.svg"/>
+<canvas aria-hidden="true" class="motion-particles" data-particles="android"></canvas>
+<div aria-label="Android 浏览器简化界面设计示意，非实际截图" class="android-phone">
+<div aria-hidden="true" class="phone-sensor"></div>
+<div class="phone-top"><span>9:41</span><span class="phone-status-dots">● ︱ ◕</span></div>
+<div class="phone-content"><div class="phone-brand"><img alt="" height="38" src="assets/moyu-mark.svg" width="38"/><span>墨鱼</span></div><div class="phone-search"><span>搜索，或输入网址</span><span class="search-arrow">↗</span></div>
+<div class="phone-section-title">快速访问 <span>＋</span></div>
+<div class="phone-app-grid"><div><span class="app-glyph glyph-cobalt">AI</span><small>AI 入口</small></div><div><span class="app-glyph glyph-mint">⌁</span><small>书签</small></div><div><span class="app-glyph glyph-coral">✦</span><small>工具</small></div><div><span class="app-glyph glyph-dark">▧</span><small>标签页</small></div></div>
+<div class="phone-news"><span class="phone-news-symbol">✳</span><span>让探索从容展开<small>轻量浏览 · 自在切换</small></span><b>↗</b></div>
+</div>
+<div class="phone-bottom"><span>⌂</span><span>‹</span><span class="phone-bottom-focus">◎</span><span>□</span><span>☰</span></div>
+<div class="phone-home-indicator"></div>
+</div>
+<div class="android-stage-caption">CONCEPT PREVIEW <span>·</span> ANDROID EXPERIENCE</div>
+</div>
+</div>
+</section><section aria-labelledby="release-title" class="chapter chapter-final" data-chapter="07" id="release"><canvas aria-hidden="true" class="motion-particles final-particles" data-particles="final"></canvas><svg aria-hidden="true" class="final-art" viewbox="0 0 1200 720"><circle class="final-ring ring1" cx="888" cy="350" r="282"></circle><circle class="final-ring ring2" cx="888" cy="350" r="226"></circle><path class="final-arc" d="M550 590C800 120 1070 110 1290 372"></path></svg><div class="container final-layout"><div class="chapter-copy"><p class="kicker" data-reveal="">MOYU BROWSER <span class="kicker-slash">/</span> V8.32.0</p><h2 class="headline" data-reveal="" id="release-title">下一页，<br/><span class="emphasis">从容开始。</span></h2><p class="copy-lead" data-reveal="">Windows 与 Android，选择适合你的方式，开启下一段浏览。</p><div class="actions" data-reveal=""><a class="button button-lime" href="download.html">前往下载中心 <svg aria-hidden="true"><use href="#i-arrow"></use></svg></a><a class="link-text final-android-link" href="android.html">Android 手机版 <svg aria-hidden="true"><use href="#i-arrow"></use></svg></a></div></div><div aria-hidden="true" class="final-mark"><span class="final-mono">M.</span><p>LESS NOISE. MORE SPACE.</p></div></div><footer class="site-footer container"><span>© 2026 MOYU BROWSER · 独立开发</span><a href="#intro">返回顶部 ↑</a></footer></section>
 </main>
-</body></html>
+<button aria-label="暂停背景动效" aria-pressed="true" class="motion-toggle" id="motion-toggle" title="暂停背景动效" type="button"><span aria-hidden="true" class="motion-icon">Ⅱ</span><span class="motion-label">动效</span></button></body></html>

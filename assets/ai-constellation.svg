@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 620" fill="none" aria-hidden="true">
+<style>
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes breathe{50%{opacity:.22;transform:scale(.94)}}@keyframes dash{to{stroke-dashoffset:-640}}@keyframes node{50%{opacity:.38;transform:scale(.82)}}
+.a{transform-origin:370px 300px;animation:spin 80s linear infinite}.b{transform-origin:370px 300px;animation:spin 110s linear reverse infinite}.dash{stroke-dasharray:7 18;animation:dash 28s linear infinite}.n{animation:node 3.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}.n:nth-child(3n){animation-delay:-1.3s}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs><linearGradient id="g" x1="0" y1="0" x2="740" y2="620" gradientUnits="userSpaceOnUse"><stop stop-color="#8F8DFF"/><stop offset="1" stop-color="#75F3D6"/></linearGradient></defs>
+<g opacity=".66"><circle class="a" cx="370" cy="300" r="238" stroke="url(#g)" stroke-width="1" stroke-dasharray="2 13"/><ellipse class="b" cx="370" cy="300" rx="308" ry="172" transform="rotate(-25 370 300)" stroke="#7787FF" stroke-width="1.4" stroke-opacity=".6"/><ellipse cx="370" cy="300" rx="295" ry="126" transform="rotate(24 370 300)" stroke="#8EEAD9" stroke-opacity=".35"/></g>
+<g stroke="url(#g)" stroke-width="1.2" opacity=".5"><path d="M95 235C174 161 248 119 350 148S562 168 673 116"/><path class="dash" d="M53 406C201 463 294 376 397 400S587 501 704 410"/><path d="M178 515Q313 460 396 536T647 517"/><path d="M82 115L172 164L258 100L409 152L577 72"/></g>
+<g fill="#D4FF7A"><circle class="n" cx="170" cy="164" r="5"/><circle class="n" cx="409" cy="152" r="3"/><circle class="n" cx="577" cy="72" r="5"/><circle class="n" cx="567" cy="483" r="3"/><circle class="n" cx="232" cy="419" r="4"/></g><g fill="#93B6FF"><circle class="n" cx="82" cy="115" r="3"/><circle class="n" cx="397" cy="400" r="5"/><circle class="n" cx="650" cy="414" r="4"/><circle class="n" cx="374" cy="536" r="4"/></g>
+</svg>

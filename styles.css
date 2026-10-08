@@ -26,3 +26,166 @@ body[data-page="download"]{background:#f7f8f6}.download-hero{padding:100px 0 92p
 @media(max-width:650px){.container{width:calc(100% - 44px)}.site-header,.mobile-menu{height:auto}.site-header{height:66px}.header-inner{width:calc(100% - 32px);height:66px;gap:12px}.brand img{width:29px;height:29px}.brand-name{font-size:15px}.nav-download{font-size:12px;padding:10px 13px;gap:8px;min-height:38px}.nav-download svg{height:14px;width:14px}.menu-toggle{width:38px}.mobile-menu{top:66px}.chapter{padding:85px 0 83px;scroll-margin-top:66px}.chapter-grid{gap:45px}.kicker{font-size:10px;letter-spacing:.08em;gap:7px;margin-bottom:21px}.headline,.hero-copy .headline{font-size:clamp(37px,8.1vw,51px);line-height:1.34;letter-spacing:-.023em;margin-bottom:21px}.copy-lead{font-size:14px;line-height:1.95}.copy-lead br{display:none}.actions{gap:19px;margin-top:26px}.button{font-size:13px;min-height:49px;padding:0 17px;gap:16px}.link-text{font-size:13px}.hero-meta{margin-top:29px;gap:9px;font-size:10px}.hero-meta span+span:before{margin:0 8px 2px 0}.hero-visual{min-height:270px;max-height:340px;padding:0 6px}.product-window{border-radius:11px;width:100%}.window-toolbar{height:33px;padding:0 12px;gap:10px}.traffic i{width:6px;height:6px}.window-url{height:20px;font-size:8px}.window-kebab{font-size:15px}.product-window>img{max-height:255px}.preview-footnote{font-size:8px;bottom:-8px;right:7px}.hero-orbits{top:-5%;height:110%}.chapter-ai .chapter-grid{gap:27px}.ai-showcase{min-height:390px}.ai-panel{width:96%;border-radius:14px}.panel-topline{padding:17px;font-size:9px}.ai-tabs{padding:16px 16px 0;gap:6px}.ai-tab{font-size:11px;padding:9px 10px}.ai-content{min-height:219px;padding:28px 18px 17px}.ai-content h3{font-size:32px}.ai-content p{font-size:12px}.ai-equalizer{bottom:17px}.panel-footerline{padding:14px 17px}.chapter-tools .section-top{margin-bottom:26px}.tools-layout{grid-template-columns:1fr;gap:26px}.tool-choice{min-height:59px;font-size:15px}.tool-display{min-height:298px;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);padding:20px 17px;gap:8px;border-radius:15px}.tool-display-info h3{font-size:22px}.tool-display-info p{font-size:12px;line-height:1.75}.tool-graphic{width:100%}.work-tabs{padding:13px 12px 0;gap:0}.work-tabs button{font-size:11px;padding:10px 8px 12px}.work-toolbar{height:53px;padding:0 17px}.work-time{font-size:8px}.work-brand{font-size:13px}.work-panel{min-height:250px;padding:26px 18px}.work-panel h3{font-size:22px}.work-panel>p:not(.work-kicker){font-size:12px}.work-chips{gap:7px}.work-chips span{padding:8px;font-size:11px}.work-window-bottom{padding:0 17px}.personal-preview{aspect-ratio:1.08;border-radius:16px}.preview-center{padding:17px}.preview-center h3{font-size:17px}.preview-shortcuts{margin-top:17px;gap:6px}.preview-shortcuts span{padding:8px;font-size:10px}.theme-choices{gap:8px}.theme-choice{padding:9px;font-size:11px}.chapter-final{min-height:720px}.final-layout{grid-template-columns:1fr;gap:0;min-height:500px}.final-mark{justify-self:end;margin-top:-15px;opacity:.2}.final-mono{font-size:155px}.final-mark p{display:none}.final-art{left:12%;width:120%;opacity:.3}.site-footer{bottom:22px;font-size:9px;flex-wrap:wrap}.download-hero{padding:75px 0 65px;min-height:unset}.download-heading{grid-template-columns:1fr;min-height:unset;gap:0}.download-emblem{position:absolute;top:0;right:0;width:210px;opacity:.12;pointer-events:none}.download-intro{position:relative;z-index:1}.download-intro .headline{font-size:clamp(38px,8.1vw,51px);max-width:450px}.release-overline{margin-top:52px}.download-options{grid-template-columns:1fr;gap:15px}.download-option{padding:24px;min-height:309px}.download-option-icon{margin-top:15px}.download-option h2{font-size:24px;margin:13px 0 7px}.release-feedback{flex-direction:column;align-items:flex-start}.download-info,.download-faq{padding:85px 0}.download-info .headline,.download-faq .headline{font-size:clamp(35px,7vw,47px)}.steps-row{grid-template-columns:1fr;gap:0}.steps-row article{padding:20px 0 23px}.steps-row h3{margin:15px 0 7px;font-size:18px}.steps-row p{max-width:unset}.checksum-row{align-items:flex-start;flex-direction:column;padding:23px 19px;gap:21px}.faq-grid{grid-template-columns:1fr;gap:39px}.faq-items summary{font-size:13px;padding:20px 4px}.faq-items details>p{font-size:12px}.download-bottom .container{font-size:10px}}
 @media(max-width:385px){.container{width:calc(100% - 34px)}.brand-name{font-size:14px}.header-inner{width:calc(100% - 20px)}.nav-download{padding:9px 10px;font-size:11px}.headline,.hero-copy .headline{font-size:35px}.tool-display{grid-template-columns:.88fr 1.12fr;padding:14px}.tool-display-info h3{font-size:20px}.work-tabs button{padding-inline:5px;font-size:10px}.ai-panel{width:100%}.ai-tab{padding:7px 8px;font-size:10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.motion-ready [data-reveal]{opacity:1!important;transform:none!important}.orbit-sweep,.final-arc{stroke-dashoffset:0}}
+
+/* ===========================================================
+   MOYU MOTION ATLAS V8.0 — Editorial rhythm, vector illustrations,
+   controlled particles, and a native Android edition.
+   =========================================================== */
+:root{--container:1240px;--cobalt:#3b55df;--ease:cubic-bezier(.23,1,.32,1)}
+.chapter{overflow:hidden}
+.chapter-copy{z-index:5}
+.headline{font-weight:610;letter-spacing:-.026em;line-height:1.33;word-break:keep-all;text-wrap:balance}
+.headline .emphasis{font-weight:640;letter-spacing:-.027em}
+.copy-lead{font-weight:400;line-height:1.95;max-width:455px;letter-spacing:.018em}
+.hero-copy .headline{font-size:clamp(42px,4.9vw,77px);line-height:1.28;letter-spacing:-.029em;max-width:660px}
+.chapter-hero{background:#f8faf7}
+.chapter-hero::after{content:"";position:absolute;right:9%;top:7%;width:22%;height:1px;background:linear-gradient(90deg,transparent,#a7b9dc55,transparent);z-index:1}
+.chapter-ai{background:#101830}
+.chapter-tools{background:#ecf5f7}
+.chapter-work{background:#344bd1}
+.chapter-personal{background:#fcf2e8}
+.chapter-final{background:#151d21}
+/* Four small editorial art coordinates: no title-overlay or decorative clutter. */
+.hero-visual,.ai-showcase,.tool-display,.work-window,.personal-preview,.android-stage,.download-heading{isolation:isolate}
+.motion-particles{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0;opacity:.82;filter:none}
+.hero-visual .motion-particles{inset:-12% -14%;width:128%;height:124%;opacity:.73}
+.hero-visual > .product-window{z-index:4}
+.hero-visual > .hero-orbits{z-index:1}
+.hero-visual>.art-badge{position:absolute;z-index:5;pointer-events:none;display:flex;align-items:center;gap:7px;border:1px solid #e0e5ee;background:rgba(255,255,255,.94);box-shadow:0 16px 38px #203b5720;border-radius:12px;padding:10px 14px;font-size:11px;color:#43566d;letter-spacing:.035em;backdrop-filter:blur(3px)}
+.hero-visual>.art-badge b{font-family:ui-monospace,Consolas,monospace;font-size:17px;letter-spacing:-.03em;color:#394dde}
+.hero-visual>.badge-one{top:5%;right:2%;transform:rotate(6deg)}
+.hero-visual>.badge-two{bottom:13%;left:-3%;transform:rotate(-6deg)}
+/* SVG art stays behind a single interactive surface in each scene */
+.scene-illustration{position:absolute;pointer-events:none;z-index:0;user-select:none;max-width:none}
+.ai-illustration{width:118%;left:-9%;top:-5%;height:110%;object-fit:contain;opacity:.72}
+.ai-showcase>.motion-particles{z-index:1}
+.ai-showcase>.ai-panel{position:relative;z-index:3}
+.ai-showcase>.ai-backdrop{z-index:1;position:absolute}
+.tools-illustration{width:68%;height:100%;right:-14%;top:-2%;object-fit:contain;opacity:.22;mix-blend-mode:multiply}
+.tool-display>.motion-particles{opacity:.46}
+.tool-display>*:not(.motion-particles):not(.scene-illustration){position:relative;z-index:2}
+.work-window>.motion-particles{opacity:.23}
+.work-window>*:not(.motion-particles){position:relative;z-index:2}
+.personal-preview>.motion-particles{opacity:.33}
+.personal-preview>*:not(.motion-particles){position:relative;z-index:2}
+.final-particles{inset:5% 0 1% auto;width:65%;height:94%;opacity:.54}
+.chapter-final .chapter-copy{z-index:4}
+/* Full-resolution illustrations, but visual anchor remains readable and quiet. */
+.hero-orbits .orbit-one{stroke-width:1.3;stroke-opacity:.46}
+.hero-orbits .orbit-two{stroke-width:1.2;stroke-opacity:.3}
+.product-window{box-shadow:0 38px 80px #263a6027,0 2px 14px #1823310d;animation:product-float 8s ease-in-out infinite}
+@keyframes floating-label{50%{translate:0 -8px}}
+.art-badge{animation:floating-label 7s ease-in-out infinite}
+.badge-two{animation-delay:-3s}
+.ai-panel{box-shadow:0 24px 78px #060d2360}
+/* Animated vector accents never move text or interactive controls */
+@keyframes accent-orbit{to{stroke-dashoffset:-700}}
+.chapter-ai .ai-signal{stroke-dasharray:12 19;animation:accent-orbit 36s linear infinite}
+.tool-display .tool-graphic{filter:drop-shadow(0 10px 24px #1b679e0e)}
+/* A built-in, unobtrusive option to stop visual motion */
+.motion-toggle{position:fixed;bottom:22px;right:22px;z-index:90;display:flex;align-items:center;justify-content:center;gap:8px;min-height:36px;min-width:72px;padding:5px 12px;border:1px solid #d5dbdb;background:#ffffffec;color:#56616a;box-shadow:0 4px 17px #26384b10;border-radius:999px;font-size:11px;letter-spacing:.03em;transition:background .25s ease,transform .25s ease}
+.motion-toggle:hover{background:#eef7ff;transform:translateY(-2px)}
+.motion-icon{font-size:12px;font-weight:700}
+html[data-motion=off] *,html[data-motion=off] *::before,html[data-motion=off] *::after{animation-play-state:paused!important;transition-duration:.01ms!important}
+html[data-motion=off] [data-reveal]{opacity:1!important;transform:none!important}
+html[data-motion=off] .motion-particles{opacity:0!important}
+/* ================ 07 / ANDROID EDITION =================== */
+.chapter-android,.android-landing{position:relative;isolation:isolate;background:#092428;color:#f4fff9;overflow:hidden}
+.chapter-android{min-height:max(760px,calc(100svh - 76px))}
+.chapter-android::before,.android-landing::before{content:"";position:absolute;right:-16%;bottom:-60%;width:65%;aspect-ratio:1;border:1px solid #7de8be20;border-radius:50%;pointer-events:none}
+.chapter-android .kicker,.android-landing .kicker{color:#93cfc3}
+.chapter-android .kicker-dot{background:#b7fd85}
+.chapter-android .headline,.android-landing .headline{font-size:clamp(44px,4.25vw,69px);line-height:1.31;letter-spacing:-.026em}
+.chapter-android .emphasis,.android-landing .emphasis{color:#c3f68f}
+.chapter-android .copy-lead,.android-landing .copy-lead{color:#b1d1ce}
+.android-meta{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-top:32px}
+.android-meta span{font-size:11px;font-weight:620;letter-spacing:.035em;color:#c1f2e6;border:1px solid #53827a72;padding:8px 11px;border-radius:999px}
+.android-copy .actions{gap:25px;margin-top:31px}
+.button-mint{background:#cbff94;color:#0b352a;box-shadow:0 13px 29px #031b191e}
+.button-mint:hover{background:#e3ffb7;box-shadow:0 17px 42px #081b1d40}
+.chapter-android .link-text,.android-landing .link-text{color:#cae9e3}
+.chapter-android .link-text:hover{color:#e7ffae}
+.android-note{margin-top:28px;color:#8aada8;font-size:11px;line-height:1.9;max-width:438px}
+.android-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,5vw,92px)}
+.android-stage{position:relative;min-height:640px;display:flex;align-items:center;justify-content:center;perspective:1100px}
+.android-stage>.motion-particles{opacity:.72;inset:4% -5%;width:110%;height:95%}
+.android-ribbon{position:absolute;z-index:1;inset:-7% -14%;width:128%;height:117%;object-fit:contain;pointer-events:none}
+.android-phone{position:relative;z-index:3;width:286px;height:573px;flex:none;border-radius:43px;border:9px solid #081218;background:#f7f9f6;color:#1a2b2d;box-shadow:0 33px 80px #0009,0 0 0 1px #86ffd548,inset 0 0 0 2px #a9b8b649;overflow:hidden;transform:rotate(-7deg) rotateY(-4deg);animation:android-float 9s ease-in-out infinite}
+.android-phone::after{content:"";position:absolute;inset:0;border-radius:34px;border:1px solid #fff9;pointer-events:none;z-index:10}
+.phone-sensor{position:absolute;z-index:10;top:9px;left:50%;translate:-50% 0;width:77px;height:22px;background:#081218;border-radius:16px}
+.phone-top{display:flex;justify-content:space-between;align-items:center;margin:0 20px;padding:13px 5px 9px;font-size:11px;font-weight:700;color:#3a4d54}
+.phone-status-dots{letter-spacing:2px;font-size:9px;color:#556363}
+.phone-content{padding:36px 18px 0}
+.phone-brand{display:flex;align-items:center;justify-content:center;gap:6px;margin:5px 0 31px;font-size:18px;font-weight:700;letter-spacing:.01em}
+.phone-brand img{width:38px;height:38px}
+.phone-search{border:1px solid #e3e8e7;border-radius:12px;background:#fff;min-height:48px;padding:8px 9px 8px 15px;display:flex;align-items:center;justify-content:space-between;gap:8px;box-shadow:0 6px 16px #142b2c0b;font-size:10px;color:#9bacae}
+.search-arrow{display:grid;place-items:center;background:#263d37;color:#fff;width:29px;height:29px;border-radius:8px;font-size:14px}
+.phone-section-title{display:flex;align-items:center;justify-content:space-between;margin-top:26px;font-size:10px;font-weight:750;color:#567074}
+.phone-section-title span{color:#899c9f;font-size:17px;font-weight:400}
+.phone-app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;text-align:center;margin-top:13px}
+.phone-app-grid>div{display:grid;justify-items:center;gap:8px;min-width:0}
+.phone-app-grid small{font-size:9px;color:#7d8d90;white-space:nowrap}
+.app-glyph{width:43px;height:43px;display:grid;place-items:center;font-size:16px;border-radius:13px;font-weight:710;box-shadow:0 5px 12px #133a3015}
+.glyph-cobalt{background:#e9edff;color:#4b5ce7}.glyph-mint{background:#d8f7ec;color:#2c9d79}.glyph-coral{background:#ffe7e2;color:#db785f}.glyph-dark{background:#e6eef2;color:#456574}
+.phone-news{display:flex;align-items:center;gap:12px;margin-top:29px;border-radius:14px;background:#e5eee9;padding:14px 13px}
+.phone-news-symbol{font-size:19px;color:#2f9973}.phone-news>span:nth-child(2){font-size:10px;line-height:1.5;font-weight:700}.phone-news small{display:block;font-size:9px;color:#7b9391;font-weight:400}.phone-news b{margin-left:auto;font-size:15px;color:#83a29a}
+.phone-bottom{position:absolute;bottom:24px;left:0;right:0;height:43px;border-top:1px solid #e0e8e8;display:flex;align-items:center;justify-content:space-around;background:#fff;font-size:16px;color:#819395}
+.phone-bottom-focus{background:#daf6e9;color:#216a52;border-radius:50%;width:31px;height:31px;display:grid;place-items:center}
+.phone-home-indicator{position:absolute;z-index:10;bottom:8px;left:50%;translate:-50% 0;background:#213538;width:82px;height:3px;border-radius:9px}
+.android-stage-caption{position:absolute;z-index:3;bottom:11px;right:4%;font-size:10px;letter-spacing:.14em;color:#8dacaa}
+@keyframes android-float{50%{transform:rotate(-4deg) rotateY(0deg) translateY(-10px)}}
+/* ================ Download Android banner ================= */
+.download-heading>.download-particles{left:auto;right:-8%;width:62%;height:100%;opacity:.4}
+.download-android{background:#0a2829;color:#f5fffd;overflow:hidden;position:relative}
+.download-android-layout{display:grid;grid-template-columns:minmax(240px,.67fr) minmax(0,1fr);align-items:center;gap:clamp(35px,7vw,105px);padding:83px 0;min-height:520px}
+.download-android-art{height:365px;position:relative;display:grid;place-items:center}
+.download-android-art img{position:absolute;inset:-15%;width:130%;height:130%;object-fit:contain;opacity:.76}
+.android-symbol{position:relative;display:grid;place-items:center;width:176px;height:176px;background:#c9ff9c;color:#17483b;border-radius:39px;box-shadow:0 22px 55px #081a1c75;transform:rotate(-11deg);animation:android-float 8s ease-in-out infinite}
+.android-symbol svg{width:89px;height:89px}
+.download-android-copy{position:relative;z-index:2}
+.download-android-copy .kicker{color:#9dcdc9}
+.download-android-copy .kicker-dot{background:#c9ff9c}
+.download-android-copy h2{font-size:clamp(37px,3.9vw,62px);line-height:1.3;font-weight:620;letter-spacing:-.03em;margin:0 0 22px}
+.download-android-copy>p:not(.kicker){font-size:15px;line-height:1.92;color:#b8d2d0;max-width:530px}
+.android-down-meta{display:flex;flex-wrap:wrap;gap:17px;margin:29px 0;color:#9dc7bf;font-family:ui-monospace,monospace;font-size:11px}
+.android-download-actions{display:flex;align-items:center;flex-wrap:wrap;gap:22px}
+.download-android-copy .link-text{color:#e6fff9}
+.download-android-copy p.android-download-safe{margin:26px 0 0;max-width:500px;color:#7ba59e;font-size:11px}
+.apk-checksum-link{display:inline-flex;align-items:center;white-space:nowrap;font-size:12px;color:#3b55df;margin-left:12px;text-decoration:underline;text-underline-offset:4px}
+/* ================ Android dedicated page ================ */
+body[data-page="android"]{background:#092428;color:#fff}
+.android-landing{padding:98px 0 80px;min-height:calc(100svh - 76px);display:flex;align-items:center}
+.android-details{background:#e8f4ee;color:#152b2b;padding:115px 0 120px}
+.android-details .headline{font-size:clamp(37px,4vw,61px)}
+.android-details .headline .emphasis{color:#15826b}
+.android-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:68px;border-top:1px solid #b8d5ce;gap:26px}
+.android-features article{padding:28px 10px 26px 0;border-bottom:1px solid #b8d5ce}
+.android-features article>span{font:650 11px ui-monospace,monospace;color:#3f8f7a;letter-spacing:.08em}
+.android-features h3{font-size:23px;font-weight:620;margin:27px 0 10px}
+.android-features p{line-height:1.86;color:#5f7d76;font-size:14px;max-width:340px}
+.android-install{background:#fff;color:#213331;padding:112px 0 129px}
+.android-install-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.87fr);gap:clamp(45px,8vw,125px);align-items:start}
+.android-install-grid .headline{font-size:clamp(37px,3.7vw,59px)}
+.android-install-grid .headline .emphasis{color:#16826c}
+.android-install-grid .copy-lead{margin:23px 0 29px;color:#72847f}
+.android-checks{border:1px solid #d8e5df;border-radius:17px;padding:13px 31px;background:#f8fbf8}
+.android-checks>div{padding:24px 0;border-bottom:1px solid #dce5e0;display:grid;gap:8px}
+.android-checks>div:last-of-type{border:0}
+.android-checks span{font:650 10px ui-monospace,monospace;color:#68998e;letter-spacing:.12em}
+.android-checks strong{font-size:14px;line-height:1.8;font-weight:560;overflow-wrap:anywhere}
+.android-checks code{font:12px/1.8 ui-monospace,Consolas,monospace;overflow-wrap:anywhere;color:#385751}
+.android-checks>button,.android-checks button{border:1px solid #a9cfc2;background:#fff;border-radius:8px;padding:8px 12px;font-size:11px;color:#1b6b5a;justify-self:start}
+.android-checks>a{display:inline-flex;font-size:12px;font-weight:650;color:#287a6a;padding:17px 0}
+/* --------- Mobile choreography: fewer particles and wider breathing --------- */
+@media(max-width:1120px){.android-stage{min-height:565px}.android-phone{scale:.9}.art-badge{scale:.85}}
+@media(max-width:860px){.android-grid{grid-template-columns:1fr;gap:30px}.chapter-android{padding:88px 0 60px}.android-stage{min-height:550px;max-width:660px;margin:auto;width:100%}.download-android-layout{grid-template-columns:minmax(0,.7fr) minmax(0,1fr);gap:24px}.download-android-art{height:300px}.android-symbol{width:140px;height:140px}.android-symbol svg{width:72px;height:72px}.android-landing{padding:85px 0 60px}.android-landing .android-stage{margin:0 auto}.android-install-grid{grid-template-columns:1fr;gap:35px}}
+@media(max-width:650px){.hero-copy .headline{font-size:clamp(34px,8.3vw,48px);line-height:1.37}.android-copy .headline,.android-landing .headline{font-size:clamp(34px,8vw,48px);line-height:1.36}.chapter-android{padding:85px 0 48px}.android-stage{height:540px;min-height:520px;max-height:540px}.android-phone{scale:.82}.android-stage-caption{bottom:8px;right:10%;font-size:9px}.android-ribbon{width:145%;left:-23%;height:110%;top:-6%}.android-meta{gap:7px;margin-top:24px}.android-meta span{font-size:10px;padding:7px 9px}.android-note{font-size:10px;margin-top:18px}.art-badge{display:none!important}.ai-illustration{width:136%;left:-18%;opacity:.43}.tools-illustration{width:78%;right:-21%;opacity:.16}.motion-toggle{min-width:40px;width:40px;height:40px;padding:0;right:13px;bottom:12px}.motion-toggle .motion-label{display:none}.final-particles{width:95%}.download-android-layout{grid-template-columns:1fr;gap:0;padding:65px 0 75px}.download-android-art{height:245px;order:2;margin:16px -4% -25px}.download-android-copy{order:1}.download-android-copy h2{font-size:clamp(33px,8.5vw,46px)}.download-android-copy>p:not(.kicker){font-size:13px}.android-download-actions{gap:19px}.android-details,.android-install{padding:83px 0}.android-features{grid-template-columns:1fr;gap:0;margin-top:34px}.android-features article{padding:25px 0 18px}.android-features h3{font-size:21px;margin:14px 0 7px}.android-checks{padding:9px 19px}.apk-checksum-link{margin:12px 0 0}.android-landing{padding:85px 0 35px}}
+@media(max-width:385px){.hero-copy .headline{font-size:clamp(33px,8.4vw,38px)}.android-phone{scale:.76}.android-stage{min-height:487px;max-height:520px}.android-landing .android-stage{min-height:487px}.phone-news{margin-top:22px}.download-android-art{height:220px}.android-install-grid .headline{font-size:35px}}
+@media(prefers-reduced-motion:reduce){.motion-particles{opacity:0!important}.art-badge,.android-phone,.android-symbol{animation:none!important}.scene-illustration{animation:none!important}}
+/* Final visual QA: readable Android header; Android-style punch-hole; clean tool copy. */
+body[data-page="android"] .site-header{color:#182027}
+body[data-page="android"] .brand-name{color:#182027}
+body[data-page="android"] .mobile-menu{color:#182027}
+.android-phone .phone-sensor{width:12px;height:12px;top:12px;border-radius:50%;background:#0a1618}
+.tools-illustration{width:42%;height:72%;right:-4%;top:15%;opacity:.14}
+@media(max-width:650px){.tools-illustration{width:52%;height:65%;right:-10%;top:18%;opacity:.1}}
