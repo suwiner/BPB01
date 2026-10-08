@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-  <item><shape android:shape="rectangle"><solid android:color="#FFFFFF" /><corners android:radius="18dp" /></shape></item>
-  <item android:left="9dp" android:top="9dp" android:right="9dp" android:bottom="9dp">
-    <vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="96dp" android:height="96dp" android:viewportWidth="96" android:viewportHeight="96">
-      <path android:fillColor="#18273A" android:fillType="evenOdd"
-          android:pathData="M47,13 C28,13 17,29 17,48 C17,67 28,83 47,83 C66,83 79,67 79,48 C79,29 66,13 47,13 Z M47,30 C57,30 62,37 62,48 C62,59 57,66 47,66 C37,66 33,59 33,48 C33,37 37,30 47,30 Z" />
-      <path android:fillColor="#18273A" android:pathData="M22,36 L8,29 L13,48 L8,68 L22,60 Z" />
-      <path android:fillColor="#E43D47" android:pathData="M88,48 A6,6 0,1 1,76 48 A6,6 0,1 1,88 48 Z" />
-    </vector>
-  </item>
+  <item><shape android:shape="rectangle">
+    <solid android:color="#FFFFFF"/><corners android:radius="20dp"/>
+  </shape></item>
+  <item android:drawable="@drawable/brand_logo"
+    android:left="11dp" android:top="11dp" android:right="11dp" android:bottom="11dp" />
 </layer-list>

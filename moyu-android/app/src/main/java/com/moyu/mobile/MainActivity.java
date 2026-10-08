@@ -55,8 +55,14 @@ import java.util.Locale;
 
 public final class MainActivity extends Activity {
   private static final int FILE_PICKER = 415;
+  private static final int IMPORT_BOOKMARKS = 416;
+  private static final int EXPORT_BOOKMARKS = 417;
   private static final int MAX_TABS = 16;
-  private static final int BLUE = Color.rgb(52,110,220);
+  private int accent(){return "blue".equals(pref.getString("theme","mono"))?0xff3268d3:(dark?Color.WHITE:0xff202020);}
+  private static final String[] BLOCKED_DOMAINS = {
+      "doubleclick.net","googlesyndication.com","google-analytics.com","googleadservices.com",
+      "adsrvr.org","taboola.com","outbrain.com","scorecardresearch.com","adnxs.com"
+  };
   private final ArrayList<Tab> tabs = new ArrayList<>();
   private SharedPreferences pref;
   private int index = 0;
@@ -73,13 +79,15 @@ public final class MainActivity extends Activity {
     String url = "";
     String title = "新标签页";
     boolean home = true;
+    boolean desktop = false;
     Tab(WebView w) { web=w; }
   }
 
   @Override public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
     pref = getSharedPreferences("moyu_mobile_preferences",MODE_PRIVATE);
-    dark = pref.getBoolean("dark",false);
+    dark = "dark".equals(pref.getString("theme","mono"));
+    MoyuReminderReceiver.createChannel(this);
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     WebView.setWebContentsDebuggingEnabled(false);
     try {
@@ -108,11 +116,11 @@ public final class MainActivity extends Activity {
     }
   }
   private int d(float n) { return (int)(n*getResources().getDisplayMetrics().density+0.5f); }
-  private int bg() {return dark?0xff111a2a:0xfff7f9fc;}
-  private int card() {return dark?0xff1b283b:Color.WHITE;}
-  private int ink() {return dark?0xffeef3fa:0xff1d2939;}
-  private int muted() {return dark?0xffa8b6c8:0xff718097;}
-  private int border() {return dark?0xff36455d:0xffe6ebf2;}
+  private int bg() {return dark?0xff121212:("blue".equals(pref.getString("theme","mono"))?0xfff7f9fd:0xfffafafa);}
+  private int card() {return dark?0xff232323:Color.WHITE;}
+  private int ink() {return dark?0xfffafafa:0xff1e1e1e;}
+  private int muted() {return dark?0xffaaaaaa:0xff777777;}
+  private int border() {return dark?0xff393939:0xffe9e9e9;}
   private GradientDrawable shape(int color,int radius,int stroke) {
     GradientDrawable x=new GradientDrawable();x.setColor(color);x.setCornerRadius(d(radius));
     if(stroke!=Color.TRANSPARENT)x.setStroke(d(1),stroke);
@@ -145,7 +153,9 @@ public final class MainActivity extends Activity {
     final Tab tab=new Tab(web);
     tabs.add(tab);
     WebSettings settings=web.getSettings();
-    settings.setJavaScriptEnabled(true);
+    settings.setJavaScriptEnabled(pref.getBoolean("javascript",true));
+    settings.setLoadsImagesAutomatically(pref.getBoolean("images",true));
+    settings.setTextZoom(pref.getInt("text_zoom",100));
     settings.setDomStorageEnabled(true);
     settings.setSupportZoom(true);
     settings.setBuiltInZoomControls(true);
@@ -161,6 +171,19 @@ public final class MainActivity extends Activity {
     CookieManager.getInstance().setAcceptThirdPartyCookies(web,false);
     web.setBackgroundColor(card());
     web.setWebViewClient(new WebViewClient() {
+      @Override public android.webkit.WebResourceResponse shouldInterceptRequest(WebView v,WebResourceRequest req) {
+        if(req.isForMainFrame()||!pref.getBoolean("tracker_block",true))return null;
+        String host=req.getUrl().getHost();
+        if(host==null)return null;
+        host=host.toLowerCase(Locale.ROOT);
+        for(String blocked:BLOCKED_DOMAINS) {
+          if(host.equals(blocked)||host.endsWith("."+blocked)) {
+            return new android.webkit.WebResourceResponse("text/plain","UTF-8",
+                new java.io.ByteArrayInputStream(new byte[0]));
+          }
+        }
+        return null;
+      }
       @Override public boolean shouldOverrideUrlLoading(WebView v,WebResourceRequest req) {
         if(!req.isForMainFrame())return false;
         Uri uri=req.getUrl();String s=uri.getScheme()==null?"":uri.getScheme().toLowerCase(Locale.ROOT);
@@ -219,6 +242,20 @@ public final class MainActivity extends Activity {
       @Override public void onHideCustomView(){exitVideo();}
     });
     web.setDownloadListener((url,userAgent,disposition,mime,length)->download(url,userAgent,disposition,mime));
+    web.setOnLongClickListener(v->{
+      WebView.HitTestResult hit=web.getHitTestResult();
+      String link=hit==null?null:hit.getExtra();
+      if(link==null||!validUrl(link))return false;
+      final String chosen=link;
+      new AlertDialog.Builder(MainActivity.this).setItems(
+        new String[]{"在新标签页打开","复制链接","下载链接"},
+        (dg,which)->{
+          if(which==0)openTab(chosen);
+          if(which==1)copyText(chosen);
+          if(which==2)download(chosen,web.getSettings().getUserAgentString(),null,null);
+        }).show();
+      return true;
+    });
     return tab;
   }
 
@@ -235,6 +272,10 @@ public final class MainActivity extends Activity {
     if(code==FILE_PICKER&&upload!=null){
       upload.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(result,data));
       upload=null;
+    }
+    if(result==RESULT_OK&&data!=null&&data.getData()!=null){
+      if(code==IMPORT_BOOKMARKS)importBookmarks(data.getData());
+      if(code==EXPORT_BOOKMARKS)exportBookmarks(data.getData());
     }
   }
   private String interpret(String input) {
@@ -278,14 +319,21 @@ public final class MainActivity extends Activity {
   }
   private void render(){
     if(tabs.isEmpty())return;
-    Tab t=active();detach(t.web);bars();
+    Tab t=active();detach(t.web);
+    dark="dark".equals(pref.getString("theme","mono"));
+    if(t.home)addressBar=null;
+    bars();
     LinearLayout root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(bg());
     LinearLayout head=new LinearLayout(this);head.setGravity(Gravity.CENTER_VERTICAL);
     head.setPadding(d(18),d(7),d(14),d(7));
     if(t.home) {
-      TextView logo=label("墨",19,Color.WHITE,true);logo.setGravity(Gravity.CENTER);
-      logo.setBackground(shape(BLUE,12,Color.TRANSPARENT));
-      head.addView(logo,new LinearLayout.LayoutParams(d(40),d(40)));
+      android.widget.ImageView logo=new android.widget.ImageView(this);
+      logo.setImageResource(R.drawable.brand_logo);
+      logo.setScaleType(android.widget.ImageView.ScaleType.FIT_CENTER);
+      logo.setAdjustViewBounds(true);
+      logo.setContentDescription("墨鱼浏览器 LOGO");
+      logo.setPadding(d(2),d(2),d(2),d(2));
+      head.addView(logo,new LinearLayout.LayoutParams(d(43),d(43)));
       TextView brand=label("墨鱼浏览器",18,ink(),true);
       LinearLayout.LayoutParams bl=new LinearLayout.LayoutParams(0,-1,1);bl.leftMargin=d(11);
       head.addView(brand,bl);
@@ -313,7 +361,7 @@ public final class MainActivity extends Activity {
     }
     root.addView(head,new LinearLayout.LayoutParams(-1,d(63)));
     progress=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);
-    progress.setMax(100);progress.setProgressTintList(ColorStateList.valueOf(BLUE));
+    progress.setMax(100);progress.setProgressTintList(ColorStateList.valueOf(accent()));
     progress.setProgressBackgroundTintList(ColorStateList.valueOf(bg()));
     root.addView(progress,new LinearLayout.LayoutParams(-1,d(2)));
     progress.setVisibility(t.home||t.web.getProgress()>=100?View.GONE:View.VISIBLE);
@@ -341,8 +389,8 @@ public final class MainActivity extends Activity {
   private void navButton(LinearLayout nav,String glyph,String title,boolean selected,Runnable click){
     LinearLayout cell=new LinearLayout(this);cell.setOrientation(LinearLayout.VERTICAL);
     cell.setGravity(Gravity.CENTER);cell.setClickable(true);cell.setContentDescription(title);
-    cell.addView(new Glyph(glyph,selected?BLUE:muted()),new LinearLayout.LayoutParams(d(24),d(24)));
-    TextView caption=label(title,10,selected?BLUE:muted(),selected);
+    cell.addView(new Glyph(glyph,selected?accent():muted()),new LinearLayout.LayoutParams(d(24),d(24)));
+    TextView caption=label(title,10,selected?accent():muted(),selected);
     caption.setGravity(Gravity.CENTER);
     LinearLayout.LayoutParams l=new LinearLayout.LayoutParams(-1,d(20));l.topMargin=d(5);
     cell.addView(caption,l);
@@ -352,7 +400,7 @@ public final class MainActivity extends Activity {
   private View home(){
     ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);scroll.setVerticalScrollBarEnabled(false);
     LinearLayout body=new LinearLayout(this);body.setOrientation(LinearLayout.VERTICAL);body.setPadding(d(24),d(52),d(24),d(24));
-    TextView kicker=label("M O Y U   B R O W S E R",11,BLUE,true);kicker.setGravity(Gravity.CENTER);
+    TextView kicker=label("M O Y U    B R O W S E R",11,accent(),true);kicker.setGravity(Gravity.CENTER);
     body.addView(kicker,new LinearLayout.LayoutParams(-1,d(24)));
     TextView headline=label("探索，从这里开始。",26,ink(),true);headline.setGravity(Gravity.CENTER);
     LinearLayout.LayoutParams hl=new LinearLayout.LayoutParams(-1,d(57));hl.topMargin=d(9);body.addView(headline,hl);
@@ -360,7 +408,7 @@ public final class MainActivity extends Activity {
     body.addView(sub,new LinearLayout.LayoutParams(-1,d(27)));
     LinearLayout searchBox=new LinearLayout(this);searchBox.setGravity(Gravity.CENTER_VERTICAL);
     searchBox.setBackground(shape(card(),20,border()));searchBox.setPadding(d(16),0,d(14),0);
-    searchBox.addView(new Glyph("search",BLUE),new LinearLayout.LayoutParams(d(23),d(23)));
+    searchBox.addView(new Glyph("search",accent()),new LinearLayout.LayoutParams(d(23),d(23)));
     EditText search=new EditText(this);search.setSingleLine(true);search.setTextSize(15);
     search.setTextColor(ink());search.setHintTextColor(muted());
     search.setHint("搜索内容或输入网址");search.setBackgroundColor(Color.TRANSPARENT);search.setPadding(d(12),0,0,0);
@@ -374,16 +422,33 @@ public final class MainActivity extends Activity {
     LinearLayout.LayoutParams sl=new LinearLayout.LayoutParams(-1,d(62));sl.topMargin=d(42);
     body.addView(searchBox,sl);
     if(pref.getBoolean("shortcuts",true)){
+      LinearLayout labelRow=new LinearLayout(this);
+      labelRow.setGravity(Gravity.CENTER_VERTICAL);
       TextView caption=label("常用网站",14,ink(),true);
-      LinearLayout.LayoutParams cl=new LinearLayout.LayoutParams(-1,d(30));cl.topMargin=d(43);
-      body.addView(caption,cl);
-      LinearLayout grid=new LinearLayout(this);grid.setGravity(Gravity.CENTER);
-      shortcut(grid,"百","百度","https://www.baidu.com",0xff426be9);
-      shortcut(grid,"G","Google","https://www.google.com",0xff4285f4);
-      shortcut(grid,"哔","哔哩哔哩","https://www.bilibili.com",0xffe76b9c);
-      shortcut(grid,"Git","GitHub","https://github.com",0xff657389);
-      LinearLayout.LayoutParams gl=new LinearLayout.LayoutParams(-1,d(114));gl.topMargin=d(5);
-      body.addView(grid,gl);
+      labelRow.addView(caption,new LinearLayout.LayoutParams(0,d(36),1));
+      TextView edit=label("管理  ›",12,muted(),false);
+      edit.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
+      edit.setOnClickListener(v->manageShortcuts());
+      labelRow.addView(edit,new LinearLayout.LayoutParams(d(82),d(38)));
+      LinearLayout.LayoutParams cl=new LinearLayout.LayoutParams(-1,d(38));cl.topMargin=d(43);
+      body.addView(labelRow,cl);
+      JSONArray links=homeShortcuts();
+      LinearLayout grid=null;
+      for(int i=0;i<links.length()&&i<12;i++){
+        if(i%4==0){
+          grid=new LinearLayout(this);grid.setGravity(Gravity.CENTER);
+          LinearLayout.LayoutParams gl=new LinearLayout.LayoutParams(-1,d(110));gl.topMargin=d(4);
+          body.addView(grid,gl);
+        }
+        JSONObject ob=links.optJSONObject(i);
+        if(ob!=null&&grid!=null){
+          String name=ob.optString("title","网站"),url=ob.optString("url","");
+          shortcut(grid,name.substring(0,1),name,url,accent());
+        }
+      }
+      if(grid!=null)for(int missing=links.length()%4;missing>0&&missing<4;missing++){
+        grid.addView(new View(this),new LinearLayout.LayoutParams(0,-1,1));
+      }
     }
     TextView bottom=label("专注每一次探索",12,muted(),false);bottom.setGravity(Gravity.CENTER);
     LinearLayout.LayoutParams foot=new LinearLayout.LayoutParams(-1,d(36));foot.topMargin=d(62);
@@ -392,8 +457,8 @@ public final class MainActivity extends Activity {
   }
   private void shortcut(LinearLayout row,String letter,String name,String url,int color) {
     LinearLayout box=new LinearLayout(this);box.setGravity(Gravity.CENTER);box.setOrientation(LinearLayout.VERTICAL);
-    TextView icon=label(letter,letter.length()>2?13:20,color,true);icon.setGravity(Gravity.CENTER);
-    icon.setBackground(shape(dark?0xff2a3a50:Color.WHITE,19,border()));
+    TextView icon=label(letter,letter.length()>2?13:20,ink(),true);icon.setGravity(Gravity.CENTER);
+    icon.setBackground(shape(card(),17,border()));
     box.addView(icon,new LinearLayout.LayoutParams(d(59),d(59)));
     TextView txt=label(name,11,muted(),false);txt.setGravity(Gravity.CENTER);
     LinearLayout.LayoutParams tl=new LinearLayout.LayoutParams(-1,d(26));tl.topMargin=d(9);
@@ -483,7 +548,7 @@ public final class MainActivity extends Activity {
   }
   private void panelRow(LinearLayout target,String glyph,String title,String sub,Runnable click) {
     LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(d(5),d(10),d(5),d(10));
-    row.addView(new Glyph(glyph,BLUE),new LinearLayout.LayoutParams(d(25),d(25)));
+    row.addView(new Glyph(glyph,accent()),new LinearLayout.LayoutParams(d(25),d(25)));
     LinearLayout words=vertical();
     TextView name=label(title,15,ink(),true);
     words.addView(name,new LinearLayout.LayoutParams(-1,d(25)));
@@ -502,13 +567,16 @@ public final class MainActivity extends Activity {
   }
   private void showMenu(){
     LinearLayout list=vertical();
-    panelRow(list,"plus","新建标签页","打开干净的新页面",()->openTab(""));
+    panelRow(list,"tools","实用工具箱","电子便签、提醒、日报周报、翻译与分类导航",this::openTools);
+    panelRow(list,"plus","新建标签页","重新开始探索",()->openTab(""));
+    panelRow(list,"tabs","标签页管理","快速查看、切换与关闭标签",this::showTabs);
     panelRow(list,"star","收藏当前网页","快速保存正在浏览的网页",this::toggleBookmark);
-    panelRow(list,"bookmark","书签","查看收藏的网站",()->showRecords("bookmarks","我的书签"));
+    panelRow(list,"bookmark","书签管理","浏览、导入与导出书签",this::bookmarkMenu);
     panelRow(list,"history","历史记录","最近浏览的网站",()->showRecords("history","历史记录"));
-    panelRow(list,"download","下载管理","打开系统下载列表",this::openDownloads);
+    panelRow(list,"download","下载管理","查看已下载的文件",this::openDownloads);
+    panelRow(list,"file","网页操作","查找、桌面模式、翻译及保存 PDF",this::showPageActions);
     panelRow(list,"share","分享网页","通过其他应用发送链接",this::share);
-    panelRow(list,"settings","偏好设置","搜索引擎、主题与隐私",this::showSettings);
+    panelRow(list,"settings","偏好设置","黑白主题、字号、搜索与隐私",this::showSettings);
     panel("快捷菜单",list);
   }
   private void showTabs(){
@@ -518,7 +586,7 @@ public final class MainActivity extends Activity {
       final int at=i;Tab t=tabs.get(i);
       LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);
       row.setPadding(d(4),d(10),d(4),d(10));
-      TextView marker=label(t.home?"⌂":String.valueOf(i+1),17,i==index?BLUE:muted(),true);
+      TextView marker=label(t.home?"⌂":String.valueOf(i+1),17,i==index?accent():muted(),true);
       marker.setGravity(Gravity.CENTER);marker.setBackground(shape(bg(),11,Color.TRANSPARENT));
       row.addView(marker,new LinearLayout.LayoutParams(d(44),d(44)));
       LinearLayout titleBox=vertical();
@@ -574,19 +642,52 @@ public final class MainActivity extends Activity {
         .setSingleChoiceItems(new String[]{"Google","百度"},"baidu".equals(pref.getString("engine","google"))?1:0,(dlg,choice)->{
           pref.edit().putString("engine",choice==1?"baidu":"google").apply();dlg.dismiss();showSettings();
         }).setNegativeButton("取消",null).show());
-    panelRow(list,"moon","深色模式",dark?"已启用":"已关闭",()->{
-      dark=!dark;pref.edit().putBoolean("dark",dark).apply();render();showSettings();
-    });
-    panelRow(list,"home","首页常用网站",pref.getBoolean("shortcuts",true)?"显示":"隐藏",()->{
+    String theme=pref.getString("theme","mono");
+    panelRow(list,"moon","外观主题",theme.equals("dark")?"黑色夜间":(theme.equals("blue")?"淡蓝":"黑白极简（默认）"),()->
+      new AlertDialog.Builder(this).setTitle("选择主题")
+        .setSingleChoiceItems(new String[]{"黑白极简（默认）","深色黑白","柔和蓝白"},
+            theme.equals("dark")?1:(theme.equals("blue")?2:0),(dg,choice)->{
+              pref.edit().putString("theme",choice==1?"dark":(choice==2?"blue":"mono")).apply();
+              dg.dismiss();dark=choice==1;render();showSettings();
+            }).setNegativeButton("取消",null).show());
+    panelRow(list,"home","首页常用网站",pref.getBoolean("shortcuts",true)?"显示（支持自定义）":"已隐藏",()->{
       boolean old=pref.getBoolean("shortcuts",true);
       pref.edit().putBoolean("shortcuts",!old).apply();render();showSettings();
+    });
+    panelRow(list,"bookmark","编辑常用网站","可新增、更名、删除或恢复初始网址",this::manageShortcuts);
+    panelRow(list,"search","网页文字大小",pref.getInt("text_zoom",100)+"%",()->{
+      int[] sizes={85,100,110,125,140,160};
+      String[] choices={"85%","100%","110%","125%","140%","160%"};
+      int selected=1;for(int i=0;i<sizes.length;i++)if(sizes[i]==pref.getInt("text_zoom",100))selected=i;
+      new AlertDialog.Builder(this).setTitle("网页文字缩放")
+        .setSingleChoiceItems(choices,selected,(dg,selectedIndex)->{
+          int chosen=sizes[selectedIndex];pref.edit().putInt("text_zoom",chosen).apply();
+          for(Tab tab:tabs)tab.web.getSettings().setTextZoom(chosen);
+          dg.dismiss();showSettings();
+        }).setNegativeButton("取消",null).show();
+    });
+    panelRow(list,"privacy","基础追踪域名拦截",pref.getBoolean("tracker_block",true)?"已启用":"已关闭",()->{
+      pref.edit().putBoolean("tracker_block",!pref.getBoolean("tracker_block",true)).apply();
+      showSettings();
+    });
+    panelRow(list,"privacy","JavaScript",pref.getBoolean("javascript",true)?"已启用":"已关闭",()->{
+      boolean enabled=!pref.getBoolean("javascript",true);
+      pref.edit().putBoolean("javascript",enabled).apply();
+      for(Tab tab:tabs)tab.web.getSettings().setJavaScriptEnabled(enabled);
+      showSettings();
+    });
+    panelRow(list,"file","网页图片",pref.getBoolean("images",true)?"已启用":"已关闭",()->{
+      boolean enabled=!pref.getBoolean("images",true);
+      pref.edit().putBoolean("images",enabled).apply();
+      for(Tab tab:tabs)tab.web.getSettings().setLoadsImagesAutomatically(enabled);
+      showSettings();
     });
     panelRow(list,"close","清除网站数据","删除缓存、Cookie 和浏览记录",()->new AlertDialog.Builder(this)
       .setTitle("清除网站数据？")
       .setMessage("此操作将清除本机网站缓存、Cookie、访问历史；不会删除书签。")
       .setNegativeButton("取消",null)
       .setPositiveButton("清除",(dlg,which)->clearSiteData()).show());
-    TextView footer=label("墨鱼浏览器 手机版 1.0.0\n轻量浏览 · 本地保存 · Android WebView",12,muted(),false);
+    TextView footer=label("墨鱼浏览器 Android 2.0.0\n独立原生工具箱 · 本地隐私存储 · Android WebView",12,muted(),false);
     footer.setGravity(Gravity.CENTER);
     LinearLayout.LayoutParams fl=new LinearLayout.LayoutParams(-1,d(78));fl.topMargin=d(18);
     list.addView(footer,fl);
@@ -599,6 +700,200 @@ public final class MainActivity extends Activity {
     WebStorage.getInstance().deleteAllData();
     pref.edit().remove("history").apply();
     message("网站数据已清除");
+  }
+
+  /** User-editable home shortcuts. Saved locally; four per row for narrow screens. */
+  private JSONArray homeShortcuts(){
+    if(pref.contains("home_links"))return getArray("home_links");
+    JSONArray initial=new JSONArray();
+    String[][] defaults={
+      {"百度","https://www.baidu.com"},{"Google","https://www.google.com"},
+      {"哔哩哔哩","https://www.bilibili.com"},{"GitHub","https://github.com"}
+    };
+    for(String[] p:defaults)initial.put(entry(p[0],p[1]));
+    pref.edit().putString("home_links",initial.toString()).apply();
+    return initial;
+  }
+  private void manageShortcuts(){
+    LinearLayout list=vertical();
+    panelRow(list,"plus","增加常用网站","最多十二个，首页每行四个",()->editShortcut(-1));
+    JSONArray shortcuts=homeShortcuts();
+    for(int i=0;i<shortcuts.length();i++){
+      JSONObject ob=shortcuts.optJSONObject(i);if(ob==null)continue;
+      final int at=i;
+      panelRow(list,"bookmark",ob.optString("title"),ob.optString("url"),()->
+        new AlertDialog.Builder(this).setTitle("管理常用网站").setItems(new String[]{"编辑网站","删除网站"},
+          (dialog,choice)->{
+            if(choice==0)editShortcut(at);
+            else {
+              JSONArray all=homeShortcuts(),next=new JSONArray();
+              for(int j=0;j<all.length();j++)if(j!=at)next.put(all.optJSONObject(j));
+              pref.edit().putString("home_links",next.toString()).apply();
+              render();manageShortcuts();
+            }
+          }).show());
+    }
+    panelRow(list,"refresh","恢复默认网站","重置为四个常用地址",()->
+      new AlertDialog.Builder(this).setTitle("恢复默认常用网站？")
+        .setNegativeButton("取消",null)
+        .setPositiveButton("恢复",(dialog,which)->{
+          pref.edit().remove("home_links").apply();render();manageShortcuts();
+        }).show());
+    panel("常用网站管理",list);
+  }
+  private void editShortcut(int editAt){
+    JSONArray links=homeShortcuts();
+    if(editAt<0&&links.length()>=12){message("最多添加12个网站");return;}
+    JSONObject old=editAt>=0?links.optJSONObject(editAt):null;
+    LinearLayout fields=vertical();fields.setPadding(d(18),d(4),d(18),d(5));
+    EditText name=new EditText(this);
+    name.setSingleLine();name.setTextColor(ink());name.setTextSize(15);
+    name.setHint("网站名称");name.setText(old==null?"":old.optString("title"));
+    fields.addView(name);
+    EditText url=new EditText(this);
+    url.setSingleLine();url.setTextColor(ink());url.setTextSize(14);
+    url.setInputType(android.text.InputType.TYPE_CLASS_TEXT|android.text.InputType.TYPE_TEXT_VARIATION_URI);
+    url.setHint("https://example.com");url.setText(old==null?"":old.optString("url"));
+    fields.addView(url);
+    AlertDialog dlg=new AlertDialog.Builder(this).setTitle(editAt>=0?"编辑网站":"新增网站")
+      .setView(fields).setNegativeButton("取消",null)
+      .setPositiveButton("保存",null).create();
+    dlg.setOnShowListener(x->dlg.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
+      String title=name.getText().toString().trim(),link=interpret(url.getText().toString().trim());
+      if(title.isEmpty()||!validUrl(link)){message("请输入名称和正确网址");return;}
+      JSONArray updated=new JSONArray();
+      for(int i=0;i<links.length();i++)updated.put(i==editAt?entry(title,link):links.optJSONObject(i));
+      if(editAt<0)updated.put(entry(title,link));
+      pref.edit().putString("home_links",updated.toString()).apply();
+      dlg.dismiss();render();manageShortcuts();
+    }));
+    dlg.show();
+  }
+
+  private void openTools(){startActivity(new Intent(this,ToolsActivity.class));}
+  private void bookmarkMenu(){
+    LinearLayout list=vertical();
+    panelRow(list,"bookmark","查看我的书签","本机收藏的网站",()->showRecords("bookmarks","我的书签"));
+    panelRow(list,"download","从文件导入书签","支持 JSON 备份和 Netscape HTML",this::selectBookmarkImport);
+    panelRow(list,"share","导出书签","生成 JSON 文件，可供下次导入",this::selectBookmarkExport);
+    panel("书签管理",list);
+  }
+  private void selectBookmarkImport(){
+    Intent in=new Intent(Intent.ACTION_OPEN_DOCUMENT);
+    in.setType("*/*");in.addCategory(Intent.CATEGORY_OPENABLE);
+    in.putExtra(Intent.EXTRA_MIME_TYPES,new String[]{"text/html","application/json","text/plain"});
+    try{startActivityForResult(in,IMPORT_BOOKMARKS);}catch(Exception e){message("无法打开系统文件选择器");}
+  }
+  private void selectBookmarkExport(){
+    Intent out=new Intent(Intent.ACTION_CREATE_DOCUMENT);
+    out.setType("application/json");
+    out.addCategory(Intent.CATEGORY_OPENABLE);
+    out.putExtra(Intent.EXTRA_TITLE,"moyu-bookmarks.json");
+    try{startActivityForResult(out,EXPORT_BOOKMARKS);}catch(Exception e){message("无法创建书签文件");}
+  }
+  private void exportBookmarks(Uri uri){
+    try(java.io.OutputStream stream=getContentResolver().openOutputStream(uri)){
+      if(stream==null)throw new java.io.IOException();
+      stream.write(getArray("bookmarks").toString(2).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+      message("书签已导出");
+    }catch(Exception e){message("书签导出失败");}
+  }
+  private void importBookmarks(Uri uri){
+    try(java.io.InputStream stream=getContentResolver().openInputStream(uri)){
+      if(stream==null)throw new java.io.IOException();
+      java.io.ByteArrayOutputStream bytes=new java.io.ByteArrayOutputStream();
+      byte[] buffer=new byte[4096];int n;
+      while((n=stream.read(buffer))!=-1){
+        if(bytes.size()+n>3_000_000)throw new java.io.IOException("文件过大");
+        bytes.write(buffer,0,n);
+      }
+      String raw=new String(bytes.toByteArray(),java.nio.charset.StandardCharsets.UTF_8);
+      JSONArray imported=new JSONArray();
+      if(raw.trim().startsWith("[")||raw.trim().startsWith("{")){
+        JSONArray data=raw.trim().startsWith("[")?new JSONArray(raw):new JSONObject(raw).optJSONArray("bookmarks");
+        if(data==null)throw new IllegalArgumentException("JSON format");
+        for(int i=0;i<data.length()&&i<1000;i++){
+          JSONObject item=data.optJSONObject(i);if(item==null)continue;
+          String url=item.optString("url");if(!validUrl(url))continue;
+          imported.put(entry(item.optString("title",url),url));
+        }
+      }else{
+        java.util.regex.Matcher links=java.util.regex.Pattern.compile(
+          "<a\\\\b[^>]*?href\\\\s*=\\\\s*[\\\"']([^\\\"']+)[\\\"'][^>]*>(.*?)</a>",
+          java.util.regex.Pattern.CASE_INSENSITIVE|java.util.regex.Pattern.DOTALL).matcher(raw);
+        while(links.find()&&imported.length()<1000){
+          String url=links.group(1).replace("&amp;","&");
+          if(!validUrl(url))continue;
+          String title=android.text.Html.fromHtml(links.group(2),android.text.Html.FROM_HTML_MODE_LEGACY).toString().trim();
+          imported.put(entry(title.isEmpty()?url:title,url));
+        }
+      }
+      JSONArray old=getArray("bookmarks"),merged=new JSONArray();
+      java.util.HashSet<String> seen=new java.util.HashSet<>();
+      for(int i=0;i<old.length();i++){
+        JSONObject item=old.optJSONObject(i);
+        if(item!=null&&validUrl(item.optString("url"))&&seen.add(item.optString("url")))merged.put(item);
+      }
+      int added=0;
+      for(int i=0;i<imported.length();i++){
+        JSONObject item=imported.optJSONObject(i);
+        if(item!=null&&seen.add(item.optString("url"))){merged.put(item);added++;}
+      }
+      pref.edit().putString("bookmarks",merged.toString()).apply();
+      message("成功导入"+added+"个新书签");
+    }catch(Exception e){message("书签格式不支持或读取失败");}
+  }
+  private void showPageActions(){
+    LinearLayout list=vertical();
+    Tab tab=active();
+    panelRow(list,"search","网页内查找","按关键词定位网页文本",this::findInPage);
+    panelRow(list,"desktop","切换电脑网页",tab.desktop?"当前：电脑版":"当前：手机版",this::toggleDesktop);
+    panelRow(list,"file","保存网页为 PDF","通过 Android 系统打印保存",this::printPage);
+    panelRow(list,"share","复制网页链接","复制到系统剪贴板",()->copyText(active().url));
+    panelRow(list,"tools","翻译当前网页","打开 Google 翻译网页版",this::translatePage);
+    panel("网页操作",list);
+  }
+  private void findInPage(){
+    if(active().home){message("请先打开网页");return;}
+    EditText term=new EditText(this);term.setSingleLine();term.setHint("网页内搜索");
+    term.setPadding(d(22),d(4),d(22),d(4));
+    WebView view=active().web;
+    new AlertDialog.Builder(this).setTitle("网页内查找").setView(term)
+      .setPositiveButton("查找",(dlg,which)->view.findAllAsync(term.getText().toString()))
+      .setNeutralButton("下一处",(dlg,which)->view.findNext(true))
+      .setNegativeButton("关闭",(dlg,which)->view.clearMatches()).show();
+  }
+  private void toggleDesktop(){
+    Tab tab=active();
+    if(tab.home){message("请先打开网页");return;}
+    tab.desktop=!tab.desktop;
+    tab.web.getSettings().setUserAgentString(tab.desktop?
+      "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36":null);
+    tab.web.getSettings().setUseWideViewPort(true);
+    tab.web.getSettings().setLoadWithOverviewMode(tab.desktop);
+    tab.web.reload();
+    message(tab.desktop?"已启用电脑网页":"已恢复手机网页");
+  }
+  private void printPage(){
+    Tab tab=active();if(tab.home){message("请先打开网页");return;}
+    android.print.PrintManager pm=(android.print.PrintManager)getSystemService(Context.PRINT_SERVICE);
+    if(pm==null){message("设备不支持打印服务");return;}
+    try{
+      pm.print("墨鱼浏览器 - "+tab.title,tab.web.createPrintDocumentAdapter("墨鱼网页"),
+        new android.print.PrintAttributes.Builder().build());
+    }catch(Exception e){message("无法生成打印文件");}
+  }
+  private void translatePage(){
+    if(active().home||!validUrl(active().url)){message("请先打开网页");return;}
+    try{openTab("https://translate.google.com/translate?sl=auto&tl=zh-CN&u="+
+      java.net.URLEncoder.encode(active().url,"UTF-8"));}
+    catch(Exception e){message("网页翻译暂不可用");}
+  }
+  private void copyText(String text){
+    if(text==null||text.isEmpty()){message("没有可复制的链接");return;}
+    ((android.content.ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE))
+      .setPrimaryClip(android.content.ClipData.newPlainText("墨鱼浏览器",text));
+    message("已复制到剪贴板");
   }
   private void share(){
     Tab t=active();

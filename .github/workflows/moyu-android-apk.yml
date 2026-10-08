@@ -1,7 +1,7 @@
-name: Moyu Android APK
+name: Moyu Android APK V2
 on:
   push:
-    branches: [moyu-android-mobile-v1]
+    branches: [moyu-android-mobile-v2]
     paths:
       - 'moyu-android/**'
       - '.github/workflows/moyu-android-apk.yml'
@@ -36,22 +36,22 @@ jobs:
         run: |
           set -euxo pipefail
           mkdir -p moyu-android/release
-          cp moyu-android/app/build/outputs/apk/debug/app-debug.apk moyu-android/release/MoyuBrowser_Mobile_1.0.0.apk
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose moyu-android/release/MoyuBrowser_Mobile_1.0.0.apk
+          cp moyu-android/app/build/outputs/apk/debug/app-debug.apk moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk
           cd moyu-android/release
-          sha256sum MoyuBrowser_Mobile_1.0.0.apk > SHA256SUMS.txt
+          sha256sum MoyuBrowser_Mobile_2.0.0.apk > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: MoyuBrowser_Mobile_Android_APK
+          name: MoyuBrowser_Mobile_V2_Android_APK
           path: |
-            moyu-android/release/MoyuBrowser_Mobile_1.0.0.apk
+            moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk
             moyu-android/release/SHA256SUMS.txt
           retention-days: 30
       - name: Publish APK to branch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f moyu-android/release/MoyuBrowser_Mobile_1.0.0.apk moyu-android/release/SHA256SUMS.txt
+          git add -f moyu-android/release/MoyuBrowser_Mobile_2.0.0.apk moyu-android/release/SHA256SUMS.txt
           if ! git diff --cached --quiet; then
             git commit -m 'build(android): publish installable mobile APK [skip ci]'
             git push
