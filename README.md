@@ -1,23 +1,22 @@
-# 墨鱼浏览器官方网站 V8.0 · Motion Atlas
+# 墨鱼浏览器官方网站 · V10.1
 
-实际部署的静态网站程序；不是图片或展示稿。
+可直接放在 GitHub Pages 的静态网站程序。新版以「柔和、宽松、清晰」为核心视觉语言。
 
 ## 页面
-- `index.html`：七章节高对比排版、四组 SVG 矢量插画、按章节控制的轻量粒子动画、Android 独立模块、AI/工具/工作流/主题交互。
-- `download.html`：Windows 8.32.0 下载校验、Android 7.0.0 安装入口、安装步骤、问答。
-- `android.html`：Android 手机版介绍、原生 APK 下载与 SHA256 校验。Android 手机图是示意性界面，不是设备截图。
+- `index.html`：Windows / AI / 工具 / 工作空间 / 主题 / Android / 下载七个章节。首屏使用柔和原创 SVG 扁平插画与 Windows 8.32.0 的真实浏览器截图。
+- `android.html`：Android 7.0.0 专页，单一手机主视觉、清晰下载入口、系统要求、SHA256 与安装说明。手机内界面为**示意图**，不是 Android 真机截图。
+- `download.html`：Windows 安装版/便携版、Android APK、版本说明、校验清单与 FAQ。
+- `styles.css`：统一配色、栅格、响应式布局和柔和动效。
+- `app.js`：粒子动画、主视觉鼠标轻视差、AI/工具/工作空间/主题交互、移动端导航与 Windows GitHub Releases 文件核验。
 
-## 动画与性能
-- `app.js` 中的 HTML Canvas 粒子会在可见时才渲染；绘制区域被限制在视觉模块内部，不穿过正文。
-- 减弱动画无障碍偏好以及“暂停动效”按钮可停止循环效果。
-- SVG 插画为矢量格式，放大没有位图背景模糊。
-
-## 文件
-- Android: `MoyuBrowser_7.0.0_Android.apk`，955930 字节，SHA256 `51c2253e9856332a7348174ba64e20f88f4ef99bd90a4930856bd291294cc7a1`。归档校验与 JAR 签名检查通过。尚未完成 Android 真机验证和正式应用商店发布。
-- Windows 8.32.0 安装版及便携版没有包含在此源码包。下载按钮仅在 GitHub Releases 中校验到正确的正式附件时启用。
+## 版本与发布
+- Windows 8.32.0：安装包尚未公开上架至 GitHub Releases；官网仅在确认对应正式发行附件存在且文件信息吻合时启用下载，避免失效链接。
+- Android 7.0.0：随网站附带 `downloads/MoyuBrowser_7.0.0_Android.apk`，支持 Android 9+；不等同于 Windows 8.32.0。
+- 下载文件完整性可使用 `downloads/SHA256SUMS_Android_7.0.0.txt` 和 `downloads/SHA256SUMS.txt` 校验。
+- 已核验 APK 文件摘要、ZIP 完整性；Android 全部真机型号的兼容性尚未全面测试。
 
 ## 部署
-把 `site/` 全部文件发布到 HTTPS 静态站点根目录即可。GitHub Pages 部署至 `gh-pages` 根目录，不会修改仓库主分支。
+把 `site/` 中的文件和目录完整发布在站点根目录（含 `.nojekyll`），使用相对路径，无需构建步骤。既有仓库 `suwiner/BPB01` 的 `gh-pages` 是网站分支，`main` 不受影响。
 
-## 说明
-Android 7.0.0 与 Windows 8.32.0 是不同版本；发布站点不会假称两者的功能完全一致。
+## 动效与无障碍
+支持系统 `prefers-reduced-motion`、手动暂停粒子、键盘导航及响应式布局。SVG 插画不会模糊。

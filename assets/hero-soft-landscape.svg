@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 650" fill="none">
+ <defs>
+  <linearGradient id="paper" x1="70" y1="65" x2="702" y2="598" gradientUnits="userSpaceOnUse"><stop stop-color="#FBFCF7"/><stop offset=".52" stop-color="#F1F6F3"/><stop offset="1" stop-color="#EFF5FA"/></linearGradient>
+  <linearGradient id="mint" x1="124" y1="52" x2="424" y2="430" gradientUnits="userSpaceOnUse"><stop stop-color="#D9F6DF"/><stop offset="1" stop-color="#A8E8D2"/></linearGradient>
+  <linearGradient id="lilac" x1="410" y1="134" x2="728" y2="470" gradientUnits="userSpaceOnUse"><stop stop-color="#DEE4FF"/><stop offset="1" stop-color="#B8CAEF"/></linearGradient>
+ </defs>
+ <rect width="760" height="650" rx="48" fill="url(#paper)"/>
+ <path d="M85 361C65 228 131 129 230 101C309 79 385 107 421 171C458 236 452 319 394 363C319 421 196 409 125 386C108 380 94 371 85 361Z" fill="url(#mint)" opacity=".88"/>
+ <path d="M540 108C636 115 708 210 709 313C710 418 648 507 557 528C472 548 396 479 391 392C384 302 414 224 457 171C482 138 512 113 540 108Z" fill="url(#lilac)" opacity=".8"/>
+ <path d="M143 478C227 417 322 420 418 453C530 491 590 501 659 472C677 464 698 491 682 516C629 599 516 612 423 579C301 536 230 542 175 576C141 598 99 560 112 523C117 507 129 489 143 478Z" fill="#F7DACC" opacity=".75"/>
+ <path d="M32 416C145 350 277 364 370 393C492 433 617 409 729 340" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity=".73"/>
+ <path d="M91 165C190 62 348 40 462 86" stroke="#B4D4CA" stroke-width="1.5" stroke-dasharray="7 12" stroke-linecap="round" opacity=".75"/>
+ <path d="M445 590C540 631 657 608 716 547" stroke="#B4C4E3" stroke-width="1.5" stroke-dasharray="7 12" stroke-linecap="round" opacity=".72"/>
+ <g opacity=".9"><circle cx="98" cy="147" r="10" fill="#E7F5A1"/><circle cx="664" cy="160" r="14" fill="#F2B5A2"/><circle cx="679" cy="529" r="8" fill="#87CEBD"/><circle cx="174" cy="533" r="7" fill="#B7BDF3"/></g>
+ <g stroke="#A7C8BA" stroke-width="1.5" stroke-linecap="round" opacity=".82"><path d="M633 72v30M618 87h30"/><path d="M71 551v20M61 561h20"/></g>
+ <rect x="121" y="192" width="119" height="74" rx="22" fill="#FFFFFF" opacity=".34" transform="rotate(-12 121 192)"/>
+ <rect x="515" y="414" width="114" height="72" rx="22" fill="#FFFFFF" opacity=".3" transform="rotate(13 515 414)"/>
+</svg>

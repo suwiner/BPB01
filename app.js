@@ -117,6 +117,28 @@
     heroVisual.addEventListener('pointerleave', () => { orbits.style.translate = '0 0'; });
   }
 
+  // V10: art-only pointer response, deliberately subtle; headings never move.
+  const gentleScene = document.querySelector('.hero-visual-v9 .hero-scene-v9');
+  if (gentleScene && !reduced.matches && !coarse.matches) {
+    let artFrame=0;
+    gentleScene.addEventListener('pointermove', event => {
+      if(artFrame) cancelAnimationFrame(artFrame);
+      artFrame=requestAnimationFrame(() => {
+        artFrame=0;
+        const rect=gentleScene.getBoundingClientRect();
+        const x=Math.min(100,Math.max(0,100*(event.clientX-rect.left)/rect.width));
+        const y=Math.min(100,Math.max(0,100*(event.clientY-rect.top)/rect.height));
+        gentleScene.style.setProperty('--pointer-x',x.toFixed(1)+'%');
+        gentleScene.style.setProperty('--pointer-y',y.toFixed(1)+'%');
+      });
+    },{passive:true});
+    gentleScene.addEventListener('pointerleave',() => {
+      if(artFrame) cancelAnimationFrame(artFrame);
+      gentleScene.style.setProperty('--pointer-x','50%');
+      gentleScene.style.setProperty('--pointer-y','45%');
+    });
+  }
+
   // AI demo is intentionally user-controlled (no auto-switching or distracting loops).
   const ai = [
     ['ChatGPT','对话、写作与代码辅助，让思路从这里开始。'],
