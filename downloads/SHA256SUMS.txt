@@ -1,0 +1,3 @@
+3aaccf5ef714ee43ef8aa11846867af5d2e158d7499463cb579c4cc2f3ddf957  MoyuBrowser_Setup_8.32.0_x64.exe
+2d8838c9769b7c9571af21d664096cdbfad0648ada61e6375fcd3ba41d42cc0c  MoyuBrowser_Portable_8.32.0_x64.zip
+2e0b85146833d5e9a4e42e6786efb2be8b92c8f1d570cecb758c64786532511d  MoyuBrowser_Source_8.32.0.zip
