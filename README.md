@@ -1,22 +1,46 @@
-# 墨鱼浏览器官方网站 · V10.1
+# 墨鱼浏览器官网 · V11.0 视觉体验升级
 
-可直接放在 GitHub Pages 的静态网站程序。新版以「柔和、宽松、清晰」为核心视觉语言。
+基于官网 V10.1 源码继续开发的、可直接部署的静态网站。**这是一套官方网站的页面文件，不是 Windows 浏览器安装程序，也不是新编译的 Android APK。**
 
-## 页面
-- `index.html`：Windows / AI / 工具 / 工作空间 / 主题 / Android / 下载七个章节。首屏使用柔和原创 SVG 扁平插画与 Windows 8.32.0 的真实浏览器截图。
-- `android.html`：Android 7.0.0 专页，单一手机主视觉、清晰下载入口、系统要求、SHA256 与安装说明。手机内界面为**示意图**，不是 Android 真机截图。
-- `download.html`：Windows 安装版/便携版、Android APK、版本说明、校验清单与 FAQ。
-- `styles.css`：统一配色、栅格、响应式布局和柔和动效。
-- `app.js`：粒子动画、主视觉鼠标轻视差、AI/工具/工作空间/主题交互、移动端导航与 Windows GitHub Releases 文件核验。
+## 本次改动
 
-## 版本与发布
-- Windows 8.32.0：安装包尚未公开上架至 GitHub Releases；官网仅在确认对应正式发行附件存在且文件信息吻合时启用下载，避免失效链接。
-- Android 7.0.0：随网站附带 `downloads/MoyuBrowser_7.0.0_Android.apk`，支持 Android 9+；不等同于 Windows 8.32.0。
-- 下载文件完整性可使用 `downloads/SHA256SUMS_Android_7.0.0.txt` 和 `downloads/SHA256SUMS.txt` 校验。
-- 已核验 APK 文件摘要、ZIP 完整性；Android 全部真机型号的兼容性尚未全面测试。
+- **首屏彻底重排**：居中大标题与下载操作，Windows 真实浏览器界面放大至约 1090px 宽，避免原先左右分栏、首图局促的问题。
+- **Android 视觉完全重做**：移除厚重手机边框和手机矢量图，以明亮的悬浮应用界面、柔和光晕与功能卡片组成页面；明确标注为**交互式概念演示，非 APK 真机截图**。
+- **站点色彩与留白**：深石墨正文，薄荷绿、浅蓝和轻微暖色点缀；统一导航、圆角、按钮、卡片与阴影体系。
+- **动态细节**：首屏柔光呼吸、轨迹轮廓、状态波纹、双侧浮层、产品截图轻透视、进度线、滚动入场、按钮扫光、卡片交错过渡。
+- **交互体验**：Android 展示可切换「快捷入口 / AI 导航 / 我的收藏」，支持左右方向键、ARIA 标签页状态；保留原有 AI 平台切换、工具介绍、工作空间、主题体验、移动菜单与动效开关。
+- **响应式**：桌面、平板、窄屏分别排版，手机屏自动减少遮挡性的悬浮卡片，保持搜索框与文字可读。
 
-## 部署
-把 `site/` 中的文件和目录完整发布在站点根目录（含 `.nojekyll`），使用相对路径，无需构建步骤。既有仓库 `suwiner/BPB01` 的 `gh-pages` 是网站分支，`main` 不受影响。
+## 文件结构
 
-## 动效与无障碍
-支持系统 `prefers-reduced-motion`、手动暂停粒子、键盘导航及响应式布局。SVG 插画不会模糊。
+- `index.html`：首页与 Windows 浏览器产品展示
+- `android.html`：Android 专页和 APK 下载
+- `download.html`：Windows、Android 下载中心及 SHA256 信息
+- `styles.css`、`app.js`：原有功能与基础布局
+- `theme-v11.css`、`motion-v11.js`：本次视觉重构与交互增强
+- `assets/`：原品牌 Logo、真实 Windows 界面图及现有功能配图
+- `downloads/`：**V10.1 随包原有 Android 7.0.0 APK 和 SHA256 清单**；Windows 安装版、便携版不包含在此网站 ZIP 中
+
+## 发布版本说明
+
+- Windows 页面目前仍引用 **Windows 8.32.0** 的真实界面截图。下载按钮只有在官方仓库 GitHub Releases 上核验到匹配版本的有效文件时才启用；不能将本网站 ZIP 误认为 Windows 安装包。
+- Android 页面仍使用 **Android 7.0.0** APK，声称支持 Android 9+ 的信息沿用原版下载说明。APK 文件未在这次官网 UI 改造中重新编译，也不能因网页概念演示推断 APK 界面已同步升级。
+- APK SHA256：`51c2253e9856332a7348174ba64e20f88f4ef99bd90a4930856bd291294cc7a1`，与压缩包内校验清单一致。
+
+## 本地预览 / GitHub Pages 部署
+
+解压后，打开 `index.html` 可以直接查看静态页面。为了模拟线上环境、正常使用依赖 HTTP 的功能，建议在解压目录启动静态服务器，例如：
+
+```bash
+python -m http.server 8000
+```
+
+浏览器访问 `http://localhost:8000/`。部署到 GitHub Pages 时，**将压缩包根目录下的文件直接放进网站发布根目录**（保留 `.nojekyll` 和所有相对目录），不需要 Node 构建或外部 CSS/JS CDN。不要将整个 ZIP 作为一个文件上传替代网站目录。
+
+## 动效与可访问性
+
+适配 `prefers-reduced-motion`，也保留页面动效开关。Android 演示支持点击和键盘切换，不会执行搜索，也不模拟真实 APK 功能。交互层使用原生 HTML、CSS 和少量 JavaScript，不使用第三方远程前端资源。
+
+## 测试范围
+
+已执行 HTML 相对路径/锚点检查、JavaScript 语法检查、APK SHA256 检查、桌面 1600px 和手机 390px 静态浏览器渲染、Android 概念展示、键盘标签页与 AI/工具/主题/工作空间/移动菜单交互测试。发布后的 CDN、具体线上域名、全部 Android 机型以及 Windows Release 可下载状态需在正式上线后分别验收。
