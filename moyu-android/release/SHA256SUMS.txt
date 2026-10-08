@@ -1,1 +1,1 @@
-3c28f11a7e58ab98fcafcef22bb9f88e3676962880e8df232c6b88f907c481e5  MoyuBrowser_Mobile_1.0.0.apk
+9c02e396e5f9fddb216ef283be2a1f9169abd887ea140a475c832d0455830022  MoyuBrowser_Mobile_2.0.0.apk
