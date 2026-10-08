@@ -89,3 +89,129 @@ body.header-light .site-header{color:#14151c;background:rgba(255,255,255,.85);bo
 @media(max-width:1080px){.download-hero-layout{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px}.download-title{font-size:clamp(48px,5.5vw,72px)}.download-panel{padding:15px}.release-choice{padding:16px 12px}.faq-layout{grid-template-columns:minmax(0,.83fr) minmax(0,1.17fr);gap:32px}}
 @media(max-width:760px){.download-hero-layout,.faq-layout{display:flex;flex-direction:column;gap:36px}.download-title{font-size:clamp(56px,11vw,87px)}.download-panel{padding:14px}.work-tab span{white-space:normal}}
 @media(max-width:400px){.download-title{font-size:52px}.download-hero-layout{gap:27px}}
+
+
+/* =====================================================
+   V6.2 | EDITORIAL RHYTHM
+   Keep the vivid six-scene identity and vector motion;
+   restore generous breathing space to Chinese typography.
+   ===================================================== */
+:root{--container:min(1376px,calc(100% - 136px))}
+body{letter-spacing:0}
+.site-header{max-width:1590px;box-shadow:0 14px 42px #04020d20}
+.scene{padding-block:clamp(145px,15vh,174px) 110px}
+.scene-layout{gap:clamp(64px,6vw,108px)}
+.scene-copy{min-width:0}
+.section-eyebrow,.eyebrow{font-weight:650;letter-spacing:.16em;opacity:.85}
+/* The headline is intentionally wide, not heavy or densely tracked. */
+.hero-grid{grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);column-gap:clamp(46px,5.5vw,96px)}
+.hero-title{font-size:clamp(61px,5.08vw,84px);font-weight:780;line-height:1.24;letter-spacing:-.018em;white-space:normal;margin:38px 0 34px}
+.hero-title .line-mask + .line-mask{margin-top:.115em}
+.hero-title em{text-shadow:none}
+.hero-summary{max-width:480px;font-size:clamp(15px,1.07vw,17px);line-height:2;letter-spacing:.01em}
+.hero-actions{margin-top:38px;gap:20px 30px}
+.hero-spec{margin-top:38px}
+.hero-showcase{max-height:610px}
+.browser-frame{width:104%;max-width:670px;box-shadow:0 38px 100px #06061790,0 0 0 9px #ffffff08}
+.float-chip{padding:12px 15px;border-radius:12px;box-shadow:0 12px 35px #0505105a}
+.float-ai{left:-2%;top:10%}
+.float-tools{right:2%;bottom:10%}
+.hero-noise{opacity:.09}
+.hero-fast-path{opacity:.26}
+.hero-fast-path.alt{opacity:.20}
+.showcase-ring{opacity:.66}
+.hero-light-follow{opacity:.42}
+.display-head{font-size:clamp(45px,4.15vw,69px);font-weight:770;letter-spacing:-.02em;line-height:1.32;margin:30px 0 27px;white-space:normal;text-wrap:balance}
+.display-head em{display:inline-block;margin-top:.095em}
+.ai-layout{grid-template-columns:minmax(0,.97fr) minmax(0,1.03fr)}
+.ai-layout .display-head{font-size:clamp(45px,4.15vw,69px)}
+.section-description{max-width:475px;font-size:clamp(14px,1.08vw,17px);line-height:2;letter-spacing:0;opacity:.79}
+.outline-index{margin-top:32px}
+.tool-count{margin-top:32px}
+.tool-count b{font-size:64px;font-weight:760;letter-spacing:-.025em}
+.work-options{margin-top:30px}
+.theme-switches{margin-top:31px}
+/* Keep visual motion while removing large decorative lettering and crossing paths. */
+.giant-back-index,.tools-giant-word,.download-marquee{display:none}
+.scene-ai .scene-art{opacity:.47}
+.scene-tools .scene-art{opacity:.64}
+.scene-work .scene-art{opacity:.64}
+.scene-personal .scene-art{opacity:.70}
+.download-art{opacity:.54}
+/* Closing screen: luminous call-to-action with text comfortably separated. */
+.end-layout{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)}
+.end-title{font-size:clamp(64px,5.7vw,94px);font-weight:790;line-height:1.28;letter-spacing:-.02em;margin:38px 0 34px}
+.end-title em{display:inline-block;margin-top:.075em}
+.end-actions{margin-top:34px}
+.end-signature{max-width:440px;margin-inline:auto}
+.download-hero{padding-top:150px;padding-bottom:98px}
+.download-hero-layout{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(52px,5vw,100px)}
+.download-title{font-size:clamp(52px,4.75vw,78px);font-weight:780;letter-spacing:-.018em;line-height:1.30;margin:33px 0 30px}
+.download-title em{display:inline-block;margin-top:.08em}
+.download-intro{font-size:clamp(14px,1.07vw,17px);line-height:2;letter-spacing:.008em;max-width:445px}
+.download-panel{border-color:#ffffffb9;box-shadow:0 30px 75px #0e087953}
+.release-choice h2{font-weight:740;letter-spacing:-.012em;font-size:21px;line-height:1.4}
+.download-section-heading{font-size:clamp(43px,4.2vw,66px);font-weight:760;line-height:1.30;letter-spacing:-.02em;margin:26px 0 48px;text-wrap:balance}
+.step h3{letter-spacing:-.015em;font-size:21px;font-weight:740;line-height:1.4}
+.faq-list summary{font-size:14px;font-weight:680;line-height:1.6}
+/* Avoid the footer and scene art competing with the message. */
+.section-footer{opacity:.55}
+/* Laptop widths: ensure the grid and paragraphs never crowd each other. */
+@media(max-width:1300px){
+ :root{--container:calc(100% - 104px)}
+ .scene-layout{gap:clamp(34px,4vw,72px)}
+ .hero-grid{column-gap:clamp(34px,4vw,70px)}
+ .hero-title{font-size:clamp(56px,5vw,74px)}
+ .display-head,.ai-layout .display-head{font-size:clamp(43px,4vw,60px)}
+ .download-title{font-size:clamp(50px,4.65vw,69px)}
+ .download-hero-layout{gap:clamp(30px,4vw,62px)}
+}
+@media(max-width:1080px){
+ :root{--container:calc(100% - 88px)}
+ .scene-layout{gap:clamp(22px,3.2vw,46px)}
+ .hero-grid{grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr)}
+ .hero-title{font-size:clamp(48px,5vw,60px);line-height:1.29}
+ .display-head,.ai-layout .display-head{font-size:clamp(40px,4vw,48px)}
+ .hero-showcase{max-height:530px}
+ .download-hero-layout{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:24px}
+ .download-title{font-size:clamp(44px,4.8vw,56px)}
+ .download-panel{padding:17px}
+}
+/* Handheld layouts use normal line wrapping, not cramped desktop typography. */
+@media(max-width:760px){
+ :root{--container:calc(100% - 44px)}
+ .scene{padding:120px 0 87px;min-height:820px}
+ .scene-layout,.hero-grid,.download-hero-layout,.faq-layout{display:flex;flex-direction:column;align-items:stretch;gap:32px}
+ .hero-grid{gap:23px}
+ .hero-title{font-size:clamp(44px,10.4vw,65px);line-height:1.27;letter-spacing:-.022em;margin:27px 0 26px}
+ .hero-title .line-mask + .line-mask{margin-top:.09em}
+ .hero-summary{font-size:14px;line-height:1.9}
+ .hero-actions{margin-top:26px}
+ .hero-spec{margin-top:28px}
+ .hero-showcase{max-height:none;min-height:285px}
+ .browser-frame{width:89%;margin-left:0}
+ .display-head,.ai-layout .display-head{font-size:clamp(36px,8.7vw,56px);line-height:1.36;letter-spacing:-.022em;margin:22px 0 22px}
+ .display-head em{margin-top:.10em}
+ .section-description{font-size:14px;line-height:1.93}
+ .tool-count b{font-size:58px}
+ .end-title{font-size:clamp(56px,11vw,76px);line-height:1.32;letter-spacing:-.022em}
+ .download-hero{padding:115px 0 95px}
+ .download-hero-layout{gap:38px}
+ .download-title{font-size:clamp(45px,10.1vw,67px);line-height:1.32;letter-spacing:-.02em;margin:24px 0 22px}
+ .download-intro{font-size:14px;line-height:1.9}
+ .download-section-heading{font-size:clamp(37px,8vw,55px);line-height:1.32;letter-spacing:-.02em;margin:22px 0 34px}
+ .hero-noise{opacity:.07}
+ .scene-ai .scene-art{opacity:.36}
+ .download-art{opacity:.40}
+}
+@media(max-width:400px){
+ .hero-title{font-size:clamp(42px,10.2vw,46px)}
+ .display-head,.ai-layout .display-head{font-size:clamp(35px,8.5vw,40px)}
+ .download-title{font-size:clamp(42px,10.1vw,47px)}
+ .end-title{font-size:clamp(51px,10.8vw,61px)}
+}
+@media(max-height:760px) and (min-width:761px){
+ .hero-title{font-size:clamp(50px,4.55vw,77px)}
+ .display-head,.ai-layout .display-head{font-size:clamp(42px,3.75vw,61px)}
+ .download-title{font-size:clamp(48px,4.3vw,69px)}
+}

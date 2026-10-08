@@ -21,3 +21,8 @@ Vector artwork uses inline SVG paths, not blurry bitmap backgrounds. Animations 
 ## Licensing
 
 This project is a demonstration/presentation website for the Moyu Browser 8.32.0 software. Hosting large EXE/ZIP files requires an official release/file server separate from GitHub Pages.
+
+
+## V6.2 editorial polish (2026-10-08)
+
+Smaller, lighter Chinese headings with improved glyph tracking and vertical rhythm across all six scenes and the download page. Reduced decorative background lettering and streamers. Preserves SVG motion, interaction and safe release-asset checks.
